@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>pattern-collector-anyjs-pull-lines 🔍 | Structured Pattern Extractor Docs</title>
+   
+   <!-- Google Fonts -->
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+   <style>
+      :root {
+         --bg-base: #030712;
+         --bg-card: #0f172a;
+         --bg-hover: #1e293b;
+         --border-color: #334155;
+         --text-primary: #f8fafc;
+         --text-secondary: #cbd5e1;
+         --text-muted: #94a3b8;
+         --accent: #38bdf8;
+         --accent-secondary: #818cf8;
+         --accent-glow: rgba(56, 189, 248, 0.12);
+         --accent-gradient: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
+         --success: #34d399;
+      }
+
+      * {
+         box-sizing: border-box;
+         margin: 0;
+         padding: 0;
+      }
+
+      body {
+         font-family: 'Inter', sans-serif;
+         background: var(--bg-base);
+         color: var(--text-primary);
+         line-height: 1.7;
+         padding-bottom: 80px;
+         background-image: 
+            radial-gradient(circle at 10% 20%, rgba(56, 189, 248, 0.05) 0%, transparent 40%),
+            radial-gradient(circle at 90% 80%, rgba(129, 140, 248, 0.05) 0%, transparent 40%);
+         background-attachment: fixed;
+      }
+
+      .container {
+         width: 92%;
+         max-width: 1200px;
+         margin: auto;
+         padding: 20px 0;
+      }
+
+      /* Navbar */
+      nav {
+         display: flex;
+         justify-content: space-between;
+         align-items: center;
+         border-bottom: 1px solid var(--border-color);
+         padding: 20px 0;
+         margin-bottom: 40px;
+         backdrop-filter: blur(12px);
+      }
+
+      .logo {
+         font-size: 20px;
+         font-weight: 800;
+         color: var(--text-primary);
+         display: flex;
+         align-items: center;
+         gap: 8px;
+         text-decoration: none;
+         letter-spacing: -0.5px;
+      }
+
+      .logo span {
+         background: var(--accent-gradient);
+         -webkit-background-clip: text;
+         -webkit-text-fill-color: transparent;
+      }
+
+      .nav-links {
+         display: flex;
+         gap: 24px;
+      }
+
+      .nav-links a {
+         color: var(--text-secondary);
+         text-decoration: none;
+         font-size: 14px;
+         font-weight: 500;
+         transition: color 0.2s ease;
+      }
+
+      .nav-links a:hover {
+         color: var(--accent);
+      }
+
+      /* Hero */
+      .hero {
+         text-align: center;
+         padding: 60px 20px 70px;
+         position: relative;
+      }
+
+      .hero h1 {
+         font-size: 46px;
+         font-weight: 800;
+         margin-bottom: 18px;
+         letter-spacing: -1.5px;
+         background: var(--accent-gradient);
+         -webkit-background-clip: text;
+         -webkit-text-fill-color: transparent;
+      }
+
+      .hero p {
+         font-size: 19px;
+         color: var(--text-secondary);
+         max-width: 800px;
+         margin: 0 auto 30px;
+         font-weight: 300;
+      }
+
+      .badges {
+         display: flex;
+         justify-content: center;
+         gap: 12px;
+         flex-wrap: wrap;
+         margin-bottom: 30px;
+      }
+
+      .badge {
+         background: var(--bg-card);
+         border: 1px solid var(--border-color);
+         padding: 8px 16px;
+         border-radius: 9999px;
+         font-size: 13px;
+         color: var(--accent);
+         font-weight: 600;
+         display: flex;
+         align-items: center;
+         gap: 8px;
+         transition: all 0.3s ease;
+      }
+
+      .badge:hover {
+         border-color: var(--accent);
+         background: var(--accent-glow);
+         transform: translateY(-1px);
+      }
+
+      /* Grid & Cards */
+      .grid {
+         display: grid;
+         grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+         gap: 28px;
+         margin-bottom: 40px;
+      }
+
+      .card {
+         background: var(--bg-card);
+         border: 1px solid var(--border-color);
+         border-radius: 20px;
+         padding: 35px;
+         transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+      }
+
+      .card:hover {
+         border-color: var(--accent);
+         transform: translateY(-3px);
+         box-shadow: 0 15px 35px rgba(56, 189, 248, 0.08);
+      }
+
+      .card h2 {
+         font-size: 22px;
+         font-weight: 700;
+         margin-bottom: 18px;
+         color: var(--text-primary);
+         display: flex;
+         align-items: center;
+         gap: 12px;
+         border-bottom: 1px solid var(--border-color);
+         padding-bottom: 10px;
+      }
+
+      .card h2 svg {
+         color: var(--accent);
+         width: 24px;
+         height: 24px;
+      }
+
+      .card p {
+         font-size: 14.5px;
+         color: var(--text-secondary);
+         margin-bottom: 20px;
+         font-weight: 300;
+      }
+
+      /* Code styling */
+      pre {
+         background: #060913;
+         padding: 18px;
+         border-radius: 10px;
+         border: 1px solid var(--border-color);
+         overflow-x: auto;
+         font-family: 'Fira Code', monospace;
+         font-size: 13.5px;
+         position: relative;
+         margin-bottom: 15px;
+      }
+
+      code {
+         color: #e2e8f0;
+      }
+
+      .copy-btn {
+         position: absolute;
+         top: 10px;
+         right: 10px;
+         background: var(--bg-card);
+         border: 1px solid var(--border-color);
+         color: var(--text-muted);
+         padding: 5px 10px;
+         font-size: 11px;
+         border-radius: 6px;
+         cursor: pointer;
+         transition: all 0.2s ease;
+         font-weight: 500;
+      }
+
+      .copy-btn:hover {
+         color: var(--text-primary);
+         border-color: var(--accent);
+         background: var(--bg-hover);
+      }
+
+      /* Table styling */
+      .api-table {
+         width: 100%;
+         border-collapse: collapse;
+         text-align: left;
+         font-size: 14px;
+         margin-top: 15px;
+      }
+
+      .api-table th {
+         padding: 12px 8px;
+         border-bottom: 2px solid var(--border-color);
+         color: var(--accent);
+         font-weight: 600;
+      }
+
+      .api-table td {
+         padding: 12px 8px;
+         border-bottom: 1px solid var(--border-color);
+         color: var(--text-secondary);
+         vertical-align: top;
+      }
+
+      /* Playground */
+      .playground {
+         background: var(--bg-card);
+         border: 1px solid var(--border-color);
+         border-radius: 24px;
+         padding: 40px;
+         margin-top: 50px;
+         box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+         position: relative;
+      }
+
+      .playground::before {
+         content: '';
+         position: absolute;
+         top: 0;
+         left: 0;
+         width: 100%;
+         height: 100%;
+         border-radius: 24px;
+         padding: 1.5px;
+         background: linear-gradient(135deg, var(--border-color) 0%, rgba(56, 189, 248, 0.4) 50%, var(--border-color) 100%);
+         -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+         -webkit-mask-composite: xor;
+         mask-composite: exclude;
+         pointer-events: none;
+      }
+
+      .playground h2 {
+         font-size: 26px;
+         margin-bottom: 12px;
+         color: var(--text-primary);
+      }
+
+      .playground-p {
+         font-size: 15px;
+         color: var(--text-secondary);
+         margin-bottom: 30px;
+         font-weight: 300;
+      }
+
+      .playground-inputs {
+         display: grid;
+         grid-template-columns: 1fr;
+         gap: 25px;
+         margin-bottom: 30px;
+      }
+
+      @media(min-width: 992px) {
+         .playground-inputs {
+            grid-template-columns: 3fr 2fr;
+         }
+      }
+
+      .input-group {
+         display: flex;
+         flex-direction: column;
+         gap: 10px;
+      }
+
+      .input-group label {
+         font-size: 12px;
+         font-weight: 700;
+         color: var(--text-muted);
+         text-transform: uppercase;
+         letter-spacing: 1px;
+      }
+
+      .input-group textarea, .input-group input {
+         background: #060913;
+         border: 1px solid var(--border-color);
+         border-radius: 10px;
+         padding: 16px;
+         color: var(--text-primary);
+         font-family: 'Fira Code', monospace;
+         font-size: 13.5px;
+         width: 100%;
+         outline: none;
+         transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .input-group textarea:focus, .input-group input:focus {
+         border-color: var(--accent);
+         box-shadow: 0 0 10px rgba(56, 189, 248, 0.15);
+      }
+
+      .regex-editor-card {
+         background: #080d1a;
+         border: 1px solid var(--border-color);
+         border-radius: 12px;
+         padding: 20px;
+         display: flex;
+         flex-direction: column;
+         gap: 15px;
+      }
+
+      .btn {
+         background: var(--accent-gradient);
+         color: #030712;
+         font-weight: 700;
+         font-size: 15px;
+         padding: 14px 28px;
+         border: none;
+         border-radius: 10px;
+         cursor: pointer;
+         transition: opacity 0.2s ease, transform 0.1s ease;
+         display: inline-flex;
+         align-items: center;
+         justify-content: center;
+         gap: 8px;
+         width: 100%;
+      }
+
+      .btn:hover {
+         opacity: 0.95;
+         box-shadow: 0 5px 15px rgba(56, 189, 248, 0.25);
+      }
+
+      .btn:active {
+         transform: scale(0.98);
+      }
+
+      /* Tabs and Results */
+      .results-section {
+         margin-top: 35px;
+         border-top: 1px solid var(--border-color);
+         padding-top: 30px;
+      }
+
+      .tabs {
+         display: flex;
+         gap: 12px;
+         margin-bottom: 20px;
+         border-bottom: 1px solid var(--border-color);
+         padding-bottom: 10px;
+      }
+
+      .tab-btn {
+         background: transparent;
+         border: none;
+         color: var(--text-muted);
+         padding: 8px 18px;
+         font-size: 14px;
+         font-weight: 600;
+         cursor: pointer;
+         transition: all 0.2s ease;
+         border-radius: 6px;
+         position: relative;
+      }
+
+      .tab-btn:hover {
+         color: var(--text-primary);
+         background: var(--bg-hover);
+      }
+
+      .tab-btn.active {
+         color: var(--accent);
+         background: var(--accent-glow);
+      }
+
+      .results-display {
+         min-height: 200px;
+      }
+
+      .results-grid-display {
+         display: grid;
+         grid-template-columns: 1fr;
+         gap: 20px;
+      }
+
+      @media(min-width: 768px) {
+         .results-grid-display {
+            grid-template-columns: 1fr 1fr;
+         }
+      }
+
+      .column-box {
+         background: #060913;
+         border: 1px solid var(--border-color);
+         border-radius: 12px;
+         padding: 20px;
+      }
+
+      .column-title {
+         font-size: 14px;
+         font-weight: 700;
+         text-transform: uppercase;
+         letter-spacing: 0.5px;
+         margin-bottom: 15px;
+         color: var(--accent-secondary);
+         display: flex;
+         align-items: center;
+         justify-content: space-between;
+      }
+
+      .count-badge {
+         background: var(--bg-card);
+         border: 1px solid var(--border-color);
+         color: var(--accent);
+         padding: 2px 8px;
+         font-size: 11px;
+         border-radius: 99px;
+         font-weight: 600;
+      }
+
+      /* Match lists cards */
+      .match-item-card {
+         background: var(--bg-card);
+         border: 1px solid var(--border-color);
+         border-radius: 8px;
+         padding: 12px 15px;
+         margin-bottom: 10px;
+         transition: border-color 0.2s ease;
+         font-size: 13px;
+      }
+
+      .match-item-card:hover {
+         border-color: var(--accent);
+      }
+
+      .match-header {
+         display: flex;
+         justify-content: space-between;
+         margin-bottom: 6px;
+      }
+
+      .match-variable {
+         font-family: 'Fira Code', monospace;
+         color: var(--accent);
+         font-weight: 600;
+      }
+
+      .match-folder {
+         font-family: 'Fira Code', monospace;
+         color: var(--accent-secondary);
+         font-weight: 500;
+         background: rgba(129, 140, 248, 0.08);
+         padding: 1px 6px;
+         border-radius: 4px;
+      }
+
+      .match-line {
+         font-family: 'Fira Code', monospace;
+         color: var(--text-muted);
+         overflow-x: auto;
+         white-space: nowrap;
+         padding: 4px 0;
+      }
+
+      .match-num {
+         color: var(--text-muted);
+         font-size: 11px;
+      }
+
+      .no-matches-placeholder {
+         color: var(--text-muted);
+         font-style: italic;
+         text-align: center;
+         padding: 30px 0;
+      }
+
+      .json-output {
+         background: #060913;
+         border: 1px solid var(--border-color);
+         border-radius: 12px;
+         padding: 20px;
+         font-family: 'Fira Code', monospace;
+         font-size: 13px;
+         color: var(--success);
+         white-space: pre-wrap;
+         max-height: 450px;
+         overflow-y: auto;
+      }
+
+      footer {
+         text-align: center;
+         margin-top: 80px;
+         color: var(--text-muted);
+         font-size: 14px;
+         border-top: 1px solid var(--border-color);
+         padding-top: 30px;
+      }
+
+      footer a {
+         color: var(--accent);
+         text-decoration: none;
+         font-weight: 500;
+      }
+
+      footer a:hover {
+         text-decoration: underline;
+      }
+
+      /* Icons */
+      svg {
+         fill: currentColor;
+      }
+   </style>
+</head>
+
+<body>
+   <div class="container">
+      <nav>
+         <a href="#" class="logo">
+            <span>pattern-collector-anyjs-pull-lines</span> 🔍
+         </a>
+         <div class="nav-links">
+            <a href="dependencies.html">Dependency Explorer</a>
+            <a href="https://www.npmjs.com/package/pattern-collector-anyjs-pull-lines" target="_blank">NPM Package</a>
+            <a href="https://github.com/keshavsoft/pattern-collector-anyjs-pull-lines" target="_blank">GitHub</a>
+         </div>
+      </nav>
+
+      <div class="hero">
+         <h1>Pattern Collector Line Extractor</h1>
+         <p>A zero-dependency ES module to scan file contents and pull structured line details with capture variables using regular expressions.</p>
+         <div class="badges">
+            <span class="badge">
+               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+               Line Tracking
+            </span>
+            <span class="badge">
+               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/></svg>
+               Configurable Regex
+            </span>
+            <span class="badge">
+               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16"><path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm-1-11v6h2v-6h-2zm0-4v2h2V7h-2z"/></svg>
+               Zero Dependencies
+            </span>
+         </div>
+      </div>
+
+      <div class="grid">
+         <!-- Card 1: Installation -->
+         <div class="card">
+            <h2>
+               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.54 5.23l-1.39-1.68C18.88 3.21 18.47 3 18 3H6c-.47 0-.88.21-1.16.55L3.46 5.23C3.17 5.57 3 6.02 3 6.5V19c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6.5c0-.48-.17-.93-.46-1.27zM6.24 5h11.52l.83 1H5.41l.83-1zM5 19V8h14v11H5zm3-5h2.55v3h2.9v-3H16l-4-4z"/></svg>
+               Installation
+            </h2>
+            <p>Add the pattern collector to your Node.js project using npm or yarn:</p>
+            <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>npm install pattern-collector-anyjs-pull-lines</code></pre>
+            <p>Or using yarn:</p>
+            <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>yarn add pattern-collector-anyjs-pull-lines</code></pre>
+         </div>
+
+         <!-- Card 2: Quick Start -->
+         <div class="card">
+            <h2>
+               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-1H9v1zm3-19C8.14 2 5 5.14 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.86-3.14-7-7-7zm2.85 11.1l-.85.6V16h-4v-2.3l-.85-.6C7.8 12.16 7 10.63 7 9c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.63-.8 3.16-2.15 4.1z"/></svg>
+               Quick Start
+            </h2>
+            <p>Import the default function and pass your code text along with your regex configurations:</p>
+            <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>import pullLines from 'pattern-collector-anyjs-pull-lines';
+
+const results = pullLines({
+  fileContent: sourceCode,
+  importRegex: {
+    parseRegex: /import\s*\{[^}]*router\s+as\s+(\w+)[^}]*\}\s*from\s*['"]\.\/([^/]+)\/.*['"]/,
+    searchString: /^[ \t]*import\b.*from\s+['"]\.[^'"]*['"];/gm
+  },
+  consumptionRegex: {
+    parseRegex: /router\.use\s*\(\s*['"`]\/?([^'"`]+)['"`]\s*,\s*(\w+)/,
+    searchString: /^[ \t]*router\.use\b.*?;/gm
+  }
+});</code></pre>
+         </div>
+      </div>
+
+      <!-- API Signature Reference -->
+      <div class="card" style="margin-bottom: 40px;">
+         <h2>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+            API Reference
+         </h2>
+         <p>The library default exports a function taking a configuration object:</p>
+         <pre><code>pullLines({ fileContent, importRegex, consumptionRegex, showLog, showLogStep1 })</code></pre>
+         
+         <table class="api-table">
+            <thead>
+               <tr>
+                  <th>Parameter</th>
+                  <th>Type</th>
+                  <th>Description</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr>
+                  <td style="font-family: 'Fira Code', monospace; color: var(--accent);">fileContent</td>
+                  <td style="font-family: 'Fira Code', monospace;">string</td>
+                  <td>The raw text / source code of the file to search.</td>
+               </tr>
+               <tr>
+                  <td style="font-family: 'Fira Code', monospace; color: var(--accent);">importRegex</td>
+                  <td style="font-family: 'Fira Code', monospace;">Object</td>
+                  <td>
+                     Contains matching settings for imports:
+                     <br>• <code style="color: var(--accent-secondary)">searchRegex / searchString</code> (RegExp): Scans for the lines.
+                     <br>• <code style="color: var(--accent-secondary)">parseRegex</code> (RegExp): Extracts capturing variables (e.g. Variable, Folder).
+                  </td>
+               </tr>
+               <tr>
+                  <td style="font-family: 'Fira Code', monospace; color: var(--accent);">consumptionRegex</td>
+                  <td style="font-family: 'Fira Code', monospace;">Object</td>
+                  <td>
+                     Contains matching settings for route consumptions:
+                     <br>• <code style="color: var(--accent-secondary)">searchRegex / searchString</code> (RegExp): Scans for usage lines.
+                     <br>• <code style="color: var(--accent-secondary)">parseRegex</code> (RegExp): Extracts capturing variables (e.g. Endpoint, Variable).
+                  </td>
+               </tr>
+               <tr>
+                  <td style="font-family: 'Fira Code', monospace; color: var(--accent);">showLog</td>
+                  <td style="font-family: 'Fira Code', monospace;">boolean</td>
+                  <td><em>Optional.</em> Enables verbose node-level console logging.</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+
+      <!-- Live Playground -->
+      <div class="playground">
+         <h2>🎮 Live Interactive Playground</h2>
+         <p class="playground-p">Input your source code and regular expressions below to test line extraction in real-time in the browser.</p>
+         
+         <div class="playground-inputs">
+            <!-- Left Side: Source Code -->
+            <div class="input-group">
+               <label for="code-input">JavaScript Source Code</label>
+               <textarea id="code-input" rows="18">import express from 'express';
+import { router as routerFromv1 } from "./v1/routes.js";
+import { router as routerFromv2 } from "./v2/routes.js";
+
+const router = express.Router();
+
+router.use("/v1", routerFromv1);
+router.use("/v2", routerFromv2);
+
+export { router };
+</textarea>
+            </div>
+
+            <!-- Right Side: Regex Settings -->
+            <div class="input-group">
+               <label>Regex Parsing Settings</label>
+               
+               <div class="regex-editor-card">
+                  <div class="input-group">
+                     <label style="color: var(--accent); font-size: 11px;">1. Import Search Regexp</label>
+                     <input type="text" id="import-search" value="^[ \t]*import\b.*from\s+['&quot;]\.[^'&quot;]*['&quot;];">
+                  </div>
+                  <div class="input-group">
+                     <label style="color: var(--accent); font-size: 11px;">2. Import Extraction Regexp</label>
+                     <input type="text" id="import-parse" value="import\s*\{[^}]*router\s+as\s+(\w+)[^}]*\}\s*from\s*['&quot;]\.\/([^/]+)\/.*['&quot;]">
+                  </div>
+               </div>
+
+               <div class="regex-editor-card" style="margin-top: 10px;">
+                  <div class="input-group">
+                     <label style="color: var(--accent-secondary); font-size: 11px;">3. Consumption Search Regexp</label>
+                     <input type="text" id="consumption-search" value="^[ \t]*router\.use\b.*?;">
+                  </div>
+                  <div class="input-group">
+                     <label style="color: var(--accent-secondary); font-size: 11px;">4. Consumption Extraction Regexp</label>
+                     <input type="text" id="consumption-parse" value="router\.use\s*\(\s*['&quot;`]\/?([^'&quot;`]+)['&quot;`]\s*,\s*(\w+)">
+                  </div>
+               </div>
+
+               <button class="btn" style="margin-top: 20px;" onclick="runInteractiveExtractor()">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z" fill="#030712"/></svg>
+                  Run Analysis
+               </button>
+            </div>
+         </div>
+
+         <!-- Display Results -->
+         <div class="results-section">
+            <div class="tabs">
+               <button class="tab-btn active" id="tab-visual" onclick="switchResultTab('visual')">Visual Results</button>
+               <button class="tab-btn" id="tab-json" onclick="switchResultTab('json')">JSON Output</button>
+            </div>
+
+            <div class="results-display">
+               <!-- Visual Tab -->
+               <div id="result-visual-content" class="results-grid-display">
+                  <!-- Import Results -->
+                  <div class="column-box">
+                     <div class="column-title">
+                        Import Lines
+                        <span class="count-badge" id="import-count">0 matches</span>
+                     </div>
+                     <div id="import-lines-list">
+                        <!-- Filled by script -->
+                     </div>
+                  </div>
+
+                  <!-- Consumption Results -->
+                  <div class="column-box">
+                     <div class="column-title" style="color: var(--accent-secondary);">
+                        Consumption Lines
+                        <span class="count-badge" id="consumption-count" style="color: var(--accent-secondary);">0 matches</span>
+                     </div>
+                     <div id="consumption-lines-list">
+                        <!-- Filled by script -->
+                     </div>
+                  </div>
+               </div>
+
+               <!-- JSON Tab -->
+               <div id="result-json-content" style="display: none;">
+                  <pre class="json-output" id="raw-json-box">Click "Run Analysis" to generate JSON results.</pre>
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <footer>
+         <p>MIT Licensed | Developed with ❤️ by <a href="https://github.com/keshavsoft" target="_blank">KeshavSoft</a></p>
+      </footer>
+   </div>
+
+   <script>
+      function copyCode(btn) {
+         const code = btn.nextElementSibling.innerText;
+         navigator.clipboard.writeText(code).then(() => {
+            const originalText = btn.innerText;
+            btn.innerText = 'Copied!';
+            setTimeout(() => {
+               btn.innerText = originalText;
+            }, 1500);
+         });
+      }
+
+      function switchResultTab(tabName) {
+         const isVisual = tabName === 'visual';
+         document.getElementById('tab-visual').classList.toggle('active', isVisual);
+         document.getElementById('tab-json').classList.toggle('active', !isVisual);
+         document.getElementById('result-visual-content').style.display = isVisual ? 'grid' : 'none';
+         document.getElementById('result-json-content').style.display = isVisual ? 'none' : 'block';
+      }
+
+      // Recreated Core Javascript Parsing logic for Browser
+      function getLineContent(content, index) {
+         const start = content.lastIndexOf('\n', index) + 1;
+         let end = content.indexOf('\n', index);
+         if (end === -1) end = content.length;
+         let line = content.substring(start, end);
+         if (line.endsWith('\r')) line = line.slice(0, -1);
+         return line;
+      }
+
+      function getLineNumber(content, currentLine, lastIndex, currentIndex) {
+         let line = currentLine;
+         for (let i = lastIndex; i < currentIndex; i++) {
+            if (content[i] === '\n') {
+               line++;
+            }
+         }
+         return line;
+      }
+
+      function performExtraction(fileContent, searchPatternStr, parsePatternStr) {
+         const results = [];
+         
+         try {
+            const searchRegex = new RegExp(searchPatternStr, 'gm');
+            const parseRegex = new RegExp(parsePatternStr);
+            
+            let match;
+            let currentLine = 1;
+            let lastPosition = 0;
+
+            while ((match = searchRegex.exec(fileContent)) !== null) {
+               currentLine = getLineNumber(fileContent, currentLine, lastPosition, match.index);
+               lastPosition = match.index;
+               
+               const line = getLineContent(fileContent, match.index);
+               const parsed = parseRegex.exec(line);
+
+               if (parsed) {
+                  results.push({
+                     variable: parsed[1] || "",
+                     folderName: parsed[2] || "",
+                     line: line,
+                     lineNumber: currentLine
+                  });
+               }
+
+               if (match.index === searchRegex.lastIndex) {
+                  searchRegex.lastIndex++;
+               }
+            }
+         } catch (e) {
+            console.error("Regex Parsing Error", e);
+         }
+
+         return results;
+      }
+
+      function runInteractiveExtractor() {
+         const code = document.getElementById('code-input').value;
+         
+         const importSearch = document.getElementById('import-search').value;
+         const importParse = document.getElementById('import-parse').value;
+         
+         const consumptionSearch = document.getElementById('consumption-search').value;
+         const consumptionParse = document.getElementById('consumption-parse').value;
+
+         const importLines = performExtraction(code, importSearch, importParse);
+         const useLines = performExtraction(code, consumptionSearch, consumptionParse);
+
+         const resultObject = {
+            importLines,
+            useLines
+         };
+
+         // Render raw JSON
+         document.getElementById('raw-json-box').innerText = JSON.stringify(resultObject, null, 2);
+
+         // Render Visual List for Imports
+         const importListDiv = document.getElementById('import-lines-list');
+         document.getElementById('import-count').innerText = `${importLines.length} match${importLines.length === 1 ? '' : 'es'}`;
+         importListDiv.innerHTML = '';
+         if (importLines.length === 0) {
+            importListDiv.innerHTML = '<div class="no-matches-placeholder">No imports matched.</div>';
+         } else {
+            importLines.forEach(item => {
+               importListDiv.innerHTML += `
+                  <div class="match-item-card">
+                     <div class="match-header">
+                        <span class="match-variable" title="Variable Name">${item.variable || '<i>none</i>'}</span>
+                        <span class="match-folder" title="Folder/Module Path">${item.folderName || '<i>none</i>'}</span>
+                     </div>
+                     <div class="match-line" title="${item.line}">${escapeHtml(item.line)}</div>
+                     <div class="match-num">Line ${item.lineNumber}</div>
+                  </div>
+               `;
+            });
+         }
+
+         // Render Visual List for Consumption
+         const consumptionListDiv = document.getElementById('consumption-lines-list');
+         document.getElementById('consumption-count').innerText = `${useLines.length} match${useLines.length === 1 ? '' : 'es'}`;
+         consumptionListDiv.innerHTML = '';
+         if (useLines.length === 0) {
+            consumptionListDiv.innerHTML = '<div class="no-matches-placeholder">No routing routes matched.</div>';
+         } else {
+            useLines.forEach(item => {
+               consumptionListDiv.innerHTML += `
+                  <div class="match-item-card">
+                     <div class="match-header">
+                        <span class="match-variable" style="color: var(--accent-secondary)" title="Variable">${item.variable || '<i>none</i>'}</span>
+                        <span class="match-folder" style="color: var(--accent)" title="Endpoint">${item.folderName || '<i>none</i>'}</span>
+                     </div>
+                     <div class="match-line" title="${item.line}">${escapeHtml(item.line)}</div>
+                     <div class="match-num">Line ${item.lineNumber}</div>
+                  </div>
+               `;
+            });
+         }
+      }
+
+      function escapeHtml(text) {
+         return text
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+      }
+
+      // Initial run on window load
+      window.onload = () => {
+         runInteractiveExtractor();
+      };
+   </script>
+</body>
+
+</html>
