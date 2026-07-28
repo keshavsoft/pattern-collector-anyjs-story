@@ -1,6 +1,6 @@
 {
-  "name": "pattern-collector-anyjs-pull-lines",
-  "version": "1.14.1",
+  "name": "pattern-collector-anyjs-story",
+  "version": "1.15.1",
   "description": "A powerful, configurable tool to scan JavaScript/ESM files and pull structured line matches using custom regular expressions.",
   "keywords": [
     "pattern",
@@ -12,8 +12,7 @@
     "extractor"
   ],
   "dependencies": {
-    "pattern-collector-anyjs-pull-lines": "^1.14.1",
-    "pattern-collector-anyjs-pull-story": "^1.15.1"
+    "pattern-collector-anyjs-pull-lines": "^1.14.2"
   },
   "type": "module",
   "exports": {
@@ -25,12 +24,12 @@
     "README.md",
     "LICENSE"
   ],
-  "homepage": "https://github.com/keshavsoft/pattern-collector-anyjs-pull-lines#readme",
+  "homepage": "https://github.com/keshavsoft/pattern-collector-anyjs-story#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/keshavsoft/pattern-collector-anyjs-pull-lines.git"
+    "url": "git+https://github.com/keshavsoft/pattern-collector-anyjs-story.git"
   },
   "bugs": {
-    "url": "https://github.com/keshavsoft/pattern-collector-anyjs-pull-lines/issues"
+    "url": "https://github.com/keshavsoft/pattern-collector-anyjs-story/issues"
   }
 }
