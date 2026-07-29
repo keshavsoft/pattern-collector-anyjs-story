@@ -10,15 +10,13 @@ const startFunc = ({ inLines, importNpmRegex, importRegex,
         });
     });
 
-
     const importLines = inLines?.importLines.map(element => {
-        // console.log("a         : ", element, importRegex);
-
         return patternBase({
             matchLine: element.match, parseRegex: importRegex?.parseRegex,
             nParts: importRegex?.nParts
         });
     });
+
 
     const useLines = inLines?.useLines.map(element => {
         return patternBase({
@@ -26,6 +24,8 @@ const startFunc = ({ inLines, importNpmRegex, importRegex,
             nParts: consumptionRegex?.nParts
         });
     });
+
+    console.log("importLines : ", consumptionRegex, useLines);
 
     const exportLines = inLines?.exportLines.map(element => {
         return patternBase({

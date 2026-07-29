@@ -40,6 +40,7 @@ const startFunc = ({ fileContent, searchRegex }) => {
     let currentLine = 1;
     let lastPosition = 0;
 
+
     while ((match = searchRegex.exec(fileContent)) !== null) {
         currentLine = getCurrentLineNumber({
             fileContent,

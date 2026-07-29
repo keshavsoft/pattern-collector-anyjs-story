@@ -15,10 +15,14 @@ const startFunc = ({ fileContent, importSearchRegex, consumptionSearchRegex,
         searchRegex: importSearchRegex
     });
 
+    // console.log("importLines : ", importLines);
+
     let useLines = patternCollector({
         fileContent,
         searchRegex: consumptionSearchRegex
     });
+
+    // console.log("------------ : ", useLines);
 
     let exportLines = patternCollector({
         fileContent,

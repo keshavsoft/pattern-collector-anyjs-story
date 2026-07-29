@@ -6,7 +6,8 @@ import { fileURLToPath } from "url";
 import defaultFunc from '../../index.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const appJsPath = path.join(__dirname, "routes.js");
+const appJsPath = path.join(__dirname, "app.js");
+const routesJsPath = path.join(__dirname, "routes.js");
 
 import extractRegex from './extractRegex.js';
 
@@ -27,5 +28,5 @@ const k1 = defaultFunc({
     }
 });
 
-console.log("ssssssssss : ", k1);
+console.log("ssssssssss : ", k1.linesStory);
 
