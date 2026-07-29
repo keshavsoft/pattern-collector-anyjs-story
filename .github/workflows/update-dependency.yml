@@ -34,7 +34,7 @@ jobs:
 
       - name: Update dependencies
         run: |
-          npm install pattern-collector-anyjs-pull-lines-all@latest pattern-collector-anyjs-pull-lines-consumption@latest pattern-collector-anyjs-pull-lines-export@latest pattern-collector-anyjs-pull-lines-import@latest
+          npm install pattern-collector-anyjs-pull-lines@latest pattern-collector-anyjs-pull-lines-story@latest
 
       - name: Run Tests
         run: |
