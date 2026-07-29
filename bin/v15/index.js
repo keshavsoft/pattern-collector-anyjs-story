@@ -1,4 +1,5 @@
 import pullLines from "pattern-collector-anyjs-pull-lines";
+import pullLinesStory from "pattern-collector-anyjs-pull-lines-story";
 
 const startFunc = ({ fileContent, searchRules, parseRules
 }) => {
@@ -12,8 +13,15 @@ const startFunc = ({ fileContent, searchRules, parseRules
         importSearchNpmRegex: searchRules?.importNpmRegex?.searchRegex
     });
 
+    const linesStory = pullLinesStory({
+        inLines: lines,
+        importNpmRegex: parseRules?.parseRules?.importNpmRegex,
+        importRegex: parseRules?.parseRules?.importRegex,
+        consumptionRegex: parseRules?.parseRules?.consumptionRegex,
+        exportRegex: parseRules?.parseRules?.exportRegex,
+    });
 
-    return lines;
+    return { lines, linesStory };
 };
 
 export default startFunc;

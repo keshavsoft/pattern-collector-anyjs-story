@@ -12,7 +12,8 @@
     "extractor"
   ],
   "dependencies": {
-    "pattern-collector-anyjs-pull-lines": "^1.14.2"
+    "pattern-collector-anyjs-pull-lines": "^1.14.2",
+    "pattern-collector-anyjs-pull-lines-story": "^1.15.1"
   },
   "type": "module",
   "exports": {
