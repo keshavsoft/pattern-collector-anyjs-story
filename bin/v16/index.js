@@ -3,24 +3,27 @@
 import pullLines from "./pullLines/index.js";
 import pullLinesStory from "./pullLinesStory/index.js";
 
-const startFunc = ({ fileContent, searchRules, parseRules
-}) => {
-    let allLines;
+import extractRegex from './extractRegex.js';
 
-    const lines = pullLines({
+const startFunc = ({ fileContent, fileType,
+    searchRules, parseRules
+}) => {
+    let lines;
+
+    lines = pullLines({
         fileContent,
-        consumptionSearchRegex: searchRules?.consumptionRegex?.searchRegex,
-        importSearchRegex: searchRules?.importRegex?.searchRegex,
-        exportSearchRegex: searchRules?.exportRegex?.searchRegex,
-        importSearchNpmRegex: searchRules?.importNpmRegex?.searchRegex
+        consumptionSearchRegex: extractRegex.searchRules[fileType].consumptionRegex,
+        importSearchRegex: extractRegex.searchRules[fileType].importRegex,
+        exportSearchRegex: extractRegex.searchRules[fileType].exportRegex,
+        importSearchNpmRegex: extractRegex.searchRules[fileType].importNpmRegex,
     });
 
     const linesStory = pullLinesStory({
         inLines: lines,
-        importNpmRegex: parseRules?.parseRules?.importNpmRegex,
-        importRegex: parseRules?.parseRules?.importRegex,
-        consumptionRegex: parseRules?.parseRules?.consumptionRegex,
-        exportRegex: parseRules?.parseRules?.exportRegex,
+        importNpmRegex: extractRegex.parseRules[fileType]?.importNpmRegex,
+        importRegex: extractRegex.parseRules[fileType].importRegex,
+        consumptionRegex: extractRegex.parseRules[fileType].consumptionRegex,
+        exportRegex: extractRegex.parseRules[fileType]?.exportRegex,
     });
 
     return { lines, linesStory };

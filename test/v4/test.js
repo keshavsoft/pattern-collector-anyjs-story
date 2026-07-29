@@ -14,6 +14,7 @@ const fileContent = fs.readFileSync(appJsPath, 'utf8');
 
 const k1 = defaultFunc({
     fileContent,
+    fileType: "fromAppJs",
     parseRules: extractRegex?.fromRoutesJs?.parseRules,
     searchRules: extractRegex?.fromRoutesJs?.searchRules,
     showLog: {
