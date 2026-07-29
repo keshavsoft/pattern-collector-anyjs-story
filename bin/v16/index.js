@@ -1,5 +1,7 @@
-import pullLines from "pattern-collector-anyjs-pull-lines";
-import pullLinesStory from "pattern-collector-anyjs-pull-lines-story";
+// import pullLines from "pattern-collector-anyjs-pull-lines";
+// import pullLinesStory from "pattern-collector-anyjs-pull-lines-story";
+import pullLines from "./pullLines/index.js";
+import pullLinesStory from "./pullLinesStory/index.js";
 
 const startFunc = ({ fileContent, searchRules, parseRules
 }) => {
