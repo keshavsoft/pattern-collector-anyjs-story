@@ -33,11 +33,21 @@ export default {
         fromAppJs: {
             importNpmRegex: {
                 nParts: 2,
+                parseRegex: /^import\s+(\w+)\s+from\s+['"]([^'"]+)['"];?$/,
+                template: "import {0} from '{1}';"
+            },
+            importNpmRegex1: {
+                nParts: 2,
                 parseRegex: /^import\s+(\w+)\s+from\s+['"]([^'"]+)['"];?$/
+            },
+            importRegex1: {
+                nParts: 2,
+                parseRegex: /import\s*\{[^}]*router\s+as\s+(\w+)[^}]*\}\s*from\s*['"]\.\/([^/]+)\/.*['"]/
             },
             importRegex: {
                 nParts: 2,
-                parseRegex: /import\s*\{[^}]*router\s+as\s+(\w+)[^}]*\}\s*from\s*['"]\.\/([^/]+)\/.*['"]/
+                parseRegex: /import\s*\{[^}]*router\s+as\s+(\w+)[^}]*\}\s*from\s*['"]\.\/([^/]+)\/.*['"]/,
+                reverseTemplate: `import { router as {0} } from './{1}/routes.js';`
             },
             consumptionRegex: {
                 nParts: 2,

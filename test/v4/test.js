@@ -16,7 +16,18 @@ const k1 = defaultFunc({
     fileType: "fromAppJs"
 });
 
-console.log("ssssssssss : ", k1.linesStory);
+//console.log("ssssssssss : ", k1.lines);
 
+//console.log("1111111 : ", k1.lines.importLinesFromNpm[0]);
 
-// console.log("ssssssssss : ", k1.lines.importLines[0], k1.linesStory.importLines[0]);
+const k2=k1.linesStory.importLines[0];
+console.log("k2 : ", k2);
+
+function build(template, parts) {
+    return template.replace(/\{(\d+)\}/g, (_, i) => parts[i]);
+};
+
+const parts = [k2.part1, k2.part2];
+const result = build("import {0} from '{1}';", parts);
+
+console.log("result : ", result);
