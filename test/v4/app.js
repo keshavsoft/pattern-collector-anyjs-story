@@ -1,22 +1,30 @@
-import { exec } from "child_process";
-import dotenv from 'dotenv'
-dotenv.config({ path: '.env' })
-
-import express from "express";
-
-import { router as routerFromapi } from './api/routes.js';
-
-import setupRoutes from "./routes.js";
-import startServer from "./server.js";
+import express from 'express';
+import cookieParser from 'cookie-parser';
+import http from 'http';
 
 const app = express()
 
-app.use('/api', routerFromapi);
+const server = http.createServer(app);
 
-setupRoutes(app);
+var port = normalizePort(process.env.PORT || 3000);
+app.use(express.static('Public'));
+app.use(cookieParser());
 
-const { port } = startServer(app);
+function normalizePort(val) {
+    var port = parseInt(val, 10);
 
-if (process.env.OPEN_BROWSER === "true") {
-    exec(`start http://localhost:${port}/v3/doctors/index.html`);
+    if (isNaN(port)) {
+        return val;
+    }
+
+    if (port >= 0) {
+        return port;
+    }
+
+    return false;
 };
+
+server.listen(port, () => {
+    console.log(`Example app listening on port ${port}`);
+    console.log(`Open here http://localhost:${port}`);
+});

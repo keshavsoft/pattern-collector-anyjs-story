@@ -10,6 +10,8 @@ const startFunc = ({ fileContent, importSearchRegex, consumptionSearchRegex,
         searchRegex: importSearchNpmRegex
     });
 
+  //  console.log("importLinesFromNpm : ", importLinesFromNpm);
+
     const importLines = patternCollector({
         fileContent,
         searchRegex: importSearchRegex

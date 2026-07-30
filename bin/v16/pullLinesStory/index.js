@@ -25,7 +25,7 @@ const startFunc = ({ inLines, importNpmRegex, importRegex,
         });
     });
 
-    console.log("importLines : ", consumptionRegex, useLines);
+   // console.log("importLines : ", consumptionRegex, useLines);
 
     const exportLines = inLines?.exportLines.map(element => {
         return patternBase({

@@ -31,7 +31,10 @@ export default {
     },
     parseRules: {
         fromAppJs: {
-            importNpmRegex: "",
+            importNpmRegex: {
+                nParts: 2,
+                parseRegex: /^import\s+(\w+)\s+from\s+['"]([^'"]+)['"];?$/
+            },
             importRegex: {
                 nParts: 2,
                 parseRegex: /import\s*\{[^}]*router\s+as\s+(\w+)[^}]*\}\s*from\s*['"]\.\/([^/]+)\/.*['"]/

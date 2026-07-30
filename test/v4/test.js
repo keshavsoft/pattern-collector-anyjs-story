@@ -18,3 +18,5 @@ const k1 = defaultFunc({
 
 console.log("ssssssssss : ", k1.linesStory);
 
+
+// console.log("ssssssssss : ", k1.lines.importLines[0], k1.linesStory.importLines[0]);
