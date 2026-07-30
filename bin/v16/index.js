@@ -5,9 +5,7 @@ import pullLinesStory from "./pullLinesStory/index.js";
 
 import extractRegex from './extractRegex.js';
 
-const startFunc = ({ fileContent, fileType,
-    searchRules, parseRules
-}) => {
+const startFunc = ({ fileContent, fileType }) => {
     let lines;
 
     lines = pullLines({
