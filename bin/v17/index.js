@@ -15,12 +15,25 @@ const getRegexForPullLines=({inExtractRegex,fileType})=>{
     };
 
 const getRegexForPullLinesStory=({inExtractRegex,fileType})=>{
+    if ("fileType" in inExtractRegex?.parseRules) {
+        
     return {
-   importNpmRegex: inExtractRegex.parseRules[fileType]?.importNpmRegex,
-        importRegex: inExtractRegex.parseRules[fileType].importRegex,
-        consumptionRegex: inExtractRegex.parseRules[fileType].consumptionRegex,
-        exportRegex: inExtractRegex.parseRules[fileType]?.exportRegex,
+  
     };
+
+    } else {
+      
+
+    return {
+   importNpmRegex: inExtractRegex?.parseRules[fileType]?.importNpmRegex,
+        importRegex: inExtractRegex?.parseRules[fileType]?.importRegex,
+        consumptionRegex: inExtractRegex?.parseRules[fileType]?.consumptionRegex,
+        exportRegex: inExtractRegex?.parseRules[fileType]?.exportRegex,
+    };
+
+      
+    };
+
     };
 
 const startFunc = ({ fileContent, fileType }) => {
