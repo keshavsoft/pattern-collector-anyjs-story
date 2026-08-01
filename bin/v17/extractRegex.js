@@ -77,6 +77,12 @@ export default {
         fromRoutesJs: "routerFrom",
         fromAppJs: "routerFrom"
     },
+    reverseTemplates: {
+        fromRoutesJs: {
+            importRegex: `import { router as {0} } from './{1}/routes.js';`,
+            consumptionRegex: `router.use("/{0}", {1});`
+        }
+    },
     fromEndPointsJs: {
         importNpmRegex: {
             searchRegex: /^[ \t]*import\b.*from\s+['"](?:(?!\.{1,2}\/|\/)[^'"]+)['"]\s*;?/gm

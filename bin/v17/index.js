@@ -52,7 +52,8 @@ const startFunc = ({ fileContent, fileType }) => {
     return {
         lines, linesStory, regexForPullLines,
         extractRegex, regexForPullLinesStory,
-        variablesConnection: extractRegex?.variablesConnection[fileType]
+        variablesConnection: extractRegex?.variablesConnection[fileType],
+        reverseTemplates: extractRegex?.reverseTemplates[fileType]
     };
 };
 
