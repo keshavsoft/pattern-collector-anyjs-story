@@ -1,18 +1,14 @@
 import fs from 'fs';
-import path from 'path';
-
-import { fileURLToPath } from "url";
 
 import defaultFunc from '../../../index.js';
 import insertUseLine from "./insertUseLine.js";
 import insertImportLine from "./insertImportLine.js";
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const routesJsPath = path.join(__dirname, "app.js");
-
-const step1 = ({ inFolderNameToInsert, inFileType }) => {
+const step1 = ({ inFolderNameToInsert, inFileType, inJsPath }) => {
     const folderNameToInsert = inFolderNameToInsert;
-    const fileContent = fs.readFileSync(routesJsPath, 'utf8');
+    const localJsPath = inJsPath;
+
+    const fileContent = fs.readFileSync(localJsPath, 'utf8');
 
     const story = defaultFunc({
         fileContent,
@@ -22,7 +18,7 @@ const step1 = ({ inFolderNameToInsert, inFileType }) => {
     insertImportLine({
         inStory: story,
         fileContent,
-        filePath: routesJsPath, inFolderNameToInsert: folderNameToInsert,
+        filePath: localJsPath, inFolderNameToInsert: folderNameToInsert,
         inTemplate1: story.regexForPullLinesStory.importRegex.reverseTemplate,
         inTemplate: story.reverseTemplates.importRegex,
         inParts: [`${story.variablesConnection}${folderNameToInsert}`, folderNameToInsert]
@@ -30,9 +26,11 @@ const step1 = ({ inFolderNameToInsert, inFileType }) => {
 
 };
 
-const step2 = ({ inFolderNameToInsert, inFileType }) => {
+const step2 = ({ inFolderNameToInsert, inFileType, inJsPath }) => {
     const folderNameToInsert = inFolderNameToInsert;
-    const fileContent = fs.readFileSync(routesJsPath, 'utf8');
+    const localJsPath = inJsPath;
+
+    const fileContent = fs.readFileSync(localJsPath, 'utf8');
 
     const story = defaultFunc({
         fileContent,
@@ -42,16 +40,16 @@ const step2 = ({ inFolderNameToInsert, inFileType }) => {
     insertUseLine({
         inStory: story,
         fileContent,
-        filePath: routesJsPath, inFolderNameToInsert: folderNameToInsert,
+        filePath: localJsPath, inFolderNameToInsert: folderNameToInsert,
         inTemplate1: story.regexForPullLinesStory.consumptionRegex.reverseTemplate,
         inTemplate: story.reverseTemplates.consumptionRegex,
         inParts: [folderNameToInsert, `${story.variablesConnection}${folderNameToInsert}`]
     });
 };
 
-const startFunc = ({ inFolderNameToInsert, inFileType }) => {
-    step1({ inFolderNameToInsert, inFileType })
-    step2({ inFolderNameToInsert, inFileType })
+const startFunc = ({ inFolderNameToInsert, inFileType, inJsPath }) => {
+    step1({ inFolderNameToInsert, inFileType, inJsPath })
+    step2({ inFolderNameToInsert, inFileType, inJsPath })
 };
 
 export default startFunc;
