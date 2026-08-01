@@ -10,7 +10,7 @@ import insertImportLine from "./insertImportLine.js";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const routesJsPath = path.join(__dirname, "routes.js");
 
-const folderNameToInsert = "v2";
+const folderNameToInsert = "v3";
 const fileType = "fromRoutesJs";
 
 const step1 = () => {

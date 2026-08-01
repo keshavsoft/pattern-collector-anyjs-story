@@ -81,6 +81,10 @@ export default {
         fromRoutesJs: {
             importRegex: `import { router as {0} } from './{1}/routes.js';`,
             consumptionRegex: `router.use("/{0}", {1});`
+        },
+        fromAppJs: {
+            importRegex: `import { router as {0} } from './{1}/routes.js';`,
+            consumptionRegex: `app.use("/{0}", {1});`
         }
     },
     fromEndPointsJs: {

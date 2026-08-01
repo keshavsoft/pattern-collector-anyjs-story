@@ -8,13 +8,13 @@ import insertUseLine from "./insertUseLine.js";
 import insertImportLine from "./insertImportLine.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const appJsPath = path.join(__dirname, "app.js");
+const routesJsPath = path.join(__dirname, "app.js");
 
 const folderNameToInsert = "api1";
 const fileType = "fromAppJs";
 
 const step1 = () => {
-    const fileContent = fs.readFileSync(appJsPath, 'utf8');
+    const fileContent = fs.readFileSync(routesJsPath, 'utf8');
 
     const story = defaultFunc({
         fileContent,
@@ -24,15 +24,16 @@ const step1 = () => {
     insertImportLine({
         inStory: story,
         fileContent,
-        filePath: appJsPath, inFolderNameToInsert: folderNameToInsert,
-        inTemplate: story.regexForPullLinesStory.importRegex.reverseTemplate,
+        filePath: routesJsPath, inFolderNameToInsert: folderNameToInsert,
+        inTemplate1: story.regexForPullLinesStory.importRegex.reverseTemplate,
+        inTemplate: story.reverseTemplates.importRegex,
         inParts: [`${story.variablesConnection}${folderNameToInsert}`, folderNameToInsert]
     });
 
 };
 
 const step2 = () => {
-    const fileContent = fs.readFileSync(appJsPath, 'utf8');
+    const fileContent = fs.readFileSync(routesJsPath, 'utf8');
 
     const story = defaultFunc({
         fileContent,
@@ -42,8 +43,9 @@ const step2 = () => {
     insertUseLine({
         inStory: story,
         fileContent,
-        filePath: appJsPath, inFolderNameToInsert: folderNameToInsert,
-        inTemplate: story.regexForPullLinesStory.consumptionRegex.reverseTemplate,
+        filePath: routesJsPath, inFolderNameToInsert: folderNameToInsert,
+        inTemplate1: story.regexForPullLinesStory.consumptionRegex.reverseTemplate,
+        inTemplate: story.reverseTemplates.consumptionRegex,
         inParts: [folderNameToInsert, `${story.variablesConnection}${folderNameToInsert}`]
     });
 };
