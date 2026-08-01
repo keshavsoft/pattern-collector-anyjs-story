@@ -42,14 +42,6 @@ export default {
                 parseRegex: /^import\s+(\w+)\s+from\s+['"]([^'"]+)['"];?$/,
                 template: "import {0} from '{1}';"
             },
-            importNpmRegex1: {
-                nParts: 2,
-                parseRegex: /^import\s+(\w+)\s+from\s+['"]([^'"]+)['"];?$/
-            },
-            importRegex1: {
-                nParts: 2,
-                parseRegex: /import\s*\{[^}]*router\s+as\s+(\w+)[^}]*\}\s*from\s*['"]\.\/([^/]+)\/.*['"]/
-            },
             importRegex: {
                 nParts: 2,
                 parseRegex: /import\s*\{[^}]*router\s+as\s+(\w+)[^}]*\}\s*from\s*['"]\.\/([^/]+)\/.*['"]/,
@@ -57,7 +49,8 @@ export default {
             },
             consumptionRegex: {
                 nParts: 2,
-                parseRegex: /app\.use\s*\(\s*['"`]\/?([^'"`]+)['"`]\s*,\s*(\w+)/
+                parseRegex: /app\.use\s*\(\s*['"`]\/?([^'"`]+)['"`]\s*,\s*(\w+)/,
+                reverseTemplate: `app.use("/{0}", {1});`
             },
             exportRegex: ""
         },
@@ -81,7 +74,8 @@ export default {
         }
     },
     variablesConnection: {
-        fromRoutesJs: "routerFrom"
+        fromRoutesJs: "routerFrom",
+        fromAppJs: "routerFrom"
     },
     fromEndPointsJs: {
         importNpmRegex: {
