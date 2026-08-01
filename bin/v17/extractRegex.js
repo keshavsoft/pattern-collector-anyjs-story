@@ -74,10 +74,14 @@ export default {
             },
             consumptionRegex: {
                 nParts: 2,
-                parseRegex: /router\.use\s*\(\s*['"`]\/?([^'"`]+)['"`]\s*,\s*(\w+)/
+                parseRegex: /router\.use\s*\(\s*['"`]\/?([^'"`]+)['"`]\s*,\s*(\w+)/,
+                reverseTemplate: `router.use("/{0}", {1});`
             },
             exportRegex: ""
         }
+    },
+    variablesConnection: {
+        fromRoutesJs: "routerFrom"
     },
     fromEndPointsJs: {
         importNpmRegex: {

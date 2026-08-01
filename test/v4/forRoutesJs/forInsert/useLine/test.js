@@ -43,3 +43,27 @@ if (!foundImportLinesStory) {
 
     fs.writeFileSync(routesJsPath, lines.join(fileContent.includes("\r\n") ? "\r\n" : "\n"));
 };
+
+const foundUseLinesStory = story.linesStory.useLines.find(element => {
+    return element.part1 === folderNameToInsert;
+});
+
+if (!foundUseLinesStory) {
+    const template = 'router.use("/{0}", {1});';
+    const parts = [folderNameToInsert, "routerFrom" + folderNameToInsert];
+    const newLine = build(template, parts);
+
+    const currentFileContent = fs.readFileSync(routesJsPath, 'utf8');
+    const lines = currentFileContent.split(/\r?\n/);
+
+    const currentStory = defaultFunc({
+        fileContent: currentFileContent,
+        fileType
+    });
+
+    const lastUseLine = currentStory.lines.useLines[currentStory.lines.useLines.length - 1];
+    const insertAtIndex = lastUseLine.lineNumber;
+    lines.splice(insertAtIndex, 0, newLine);
+
+    fs.writeFileSync(routesJsPath, lines.join(currentFileContent.includes("\r\n") ? "\r\n" : "\n"));
+};

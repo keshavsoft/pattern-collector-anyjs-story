@@ -5,41 +5,34 @@ import pullLinesStory from "./pullLinesStory/index.js";
 
 import extractRegex from './extractRegex.js';
 
-const getRegexForPullLines=({inExtractRegex,fileType})=>{
+const getRegexForPullLines = ({ inExtractRegex, fileType }) => {
     return {
- consumptionSearchRegex: inExtractRegex.searchRules[fileType].consumptionRegex,
+        consumptionSearchRegex: inExtractRegex.searchRules[fileType].consumptionRegex,
         importSearchRegex: inExtractRegex.searchRules[fileType].importRegex,
         exportSearchRegex: inExtractRegex.searchRules[fileType].exportRegex,
         importSearchNpmRegex: inExtractRegex.searchRules[fileType].importNpmRegex,
     };
-    };
+};
 
-const getRegexForPullLinesStory=({inExtractRegex,fileType})=>{
+const getRegexForPullLinesStory = ({ inExtractRegex, fileType }) => {
     if ("fileType" in inExtractRegex?.parseRules) {
-        
-    return {
-  
-    };
+        return {
 
+        };
     } else {
-      
-
-    return {
-   importNpmRegex: inExtractRegex?.parseRules[fileType]?.importNpmRegex,
-        importRegex: inExtractRegex?.parseRules[fileType]?.importRegex,
-        consumptionRegex: inExtractRegex?.parseRules[fileType]?.consumptionRegex,
-        exportRegex: inExtractRegex?.parseRules[fileType]?.exportRegex,
+        return {
+            importNpmRegex: inExtractRegex?.parseRules[fileType]?.importNpmRegex,
+            importRegex: inExtractRegex?.parseRules[fileType]?.importRegex,
+            consumptionRegex: inExtractRegex?.parseRules[fileType]?.consumptionRegex,
+            exportRegex: inExtractRegex?.parseRules[fileType]?.exportRegex,
+        };
     };
-
-      
-    };
-
-    };
+};
 
 const startFunc = ({ fileContent, fileType }) => {
     let lines;
-const regexForPullLines= getRegexForPullLines({inExtractRegex:extractRegex,fileType});
-const regexForPullLinesStory= getRegexForPullLinesStory({inExtractRegex:extractRegex,fileType});
+    const regexForPullLines = getRegexForPullLines({ inExtractRegex: extractRegex, fileType });
+    const regexForPullLinesStory = getRegexForPullLinesStory({ inExtractRegex: extractRegex, fileType });
 
     lines = pullLines({
         fileContent,
@@ -53,11 +46,13 @@ const regexForPullLinesStory= getRegexForPullLinesStory({inExtractRegex:extractR
     const linesStory = pullLinesStory({
         inLines: lines,
         ...regexForPullLinesStory
-     
+
     });
 
-    return { lines, linesStory, regexForPullLines,
-        extractRegex,regexForPullLinesStory
+    return {
+        lines, linesStory, regexForPullLines,
+        extractRegex, regexForPullLinesStory,
+        variablesConnection: extractRegex?.variablesConnection[fileType]
     };
 };
 
