@@ -1,6 +1,6 @@
-import patternCollector from "../patternCollector/index.js";
+import patternBase from "pattern-collector-base-regex-n-parts";
 
-const pullLinesStory = ({ inLines, importNpmRegex, importRegex,
+const startFunc = ({ inLines, importNpmRegex, importRegex,
     consumptionRegex, exportRegex
 }) => {
     const importLinesFromNpm = inLines?.importLinesFromNpm.map(element => {
@@ -48,28 +48,6 @@ const pullLinesStory = ({ inLines, importNpmRegex, importRegex,
         useLines,
         exportLines
     };
-};
-
-const getRegexForPullLinesStory = ({ inExtractRegex, fileType }) => {
-    return {
-        importNpmRegex: inExtractRegex?.parseRules[fileType]?.importNpmRegex,
-        importRegex: inExtractRegex?.parseRules[fileType]?.importRegex,
-        consumptionRegex: inExtractRegex?.parseRules[fileType]?.consumptionRegex,
-        exportRegex: inExtractRegex?.parseRules[fileType]?.exportRegex
-    };
-};
-
-const startFunc = ({ fileContent, fileType, inExtractRegex }) => {
-    let linesStory;
-
-    const regexForPullLinesStory = getRegexForPullLinesStory({ inExtractRegex, fileType });
-
-    linesStory = pullLinesStory({
-        fileContent,
-        ...regexForPullLinesStory
-    });
-
-    return { linesStory, regexForPullLinesStory };
 };
 
 export default startFunc;

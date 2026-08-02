@@ -1,6 +1,6 @@
 import patternCollector from "../patternCollector/index.js";
 
-const startFunc = ({ fileContent, importSearchRegex, consumptionSearchRegex,
+const pullLines = ({ fileContent, importSearchRegex, consumptionSearchRegex,
     exportSearchRegex, importSearchNpmRegex
 }) => {
     let allLines;
@@ -10,7 +10,7 @@ const startFunc = ({ fileContent, importSearchRegex, consumptionSearchRegex,
         searchRegex: importSearchNpmRegex
     });
 
-  //  console.log("importLinesFromNpm : ", importLinesFromNpm);
+    //  console.log("importLinesFromNpm : ", importLinesFromNpm);
 
     const importLines = patternCollector({
         fileContent,
@@ -38,6 +38,28 @@ const startFunc = ({ fileContent, importSearchRegex, consumptionSearchRegex,
         useLines,
         exportLines
     };
+};
+
+const getRegexForPullLines = ({ inExtractRegex, fileType }) => {
+    return {
+        consumptionSearchRegex: inExtractRegex.searchRules[fileType].consumptionRegex,
+        importSearchRegex: inExtractRegex.searchRules[fileType].importRegex,
+        exportSearchRegex: inExtractRegex.searchRules[fileType].exportRegex,
+        importSearchNpmRegex: inExtractRegex.searchRules[fileType].importNpmRegex
+    };
+};
+
+const startFunc = ({ fileContent, fileType, inExtractRegex }) => {
+    let lines;
+
+    const regexForPullLines = getRegexForPullLines({ inExtractRegex, fileType });
+
+    lines = pullLines({
+        fileContent,
+        ...regexForPullLines
+    });
+
+    return { lines, regexForPullLines };
 };
 
 export default startFunc;

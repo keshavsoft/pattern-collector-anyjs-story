@@ -31,6 +31,7 @@ const getRegexForPullLinesStory = ({ inExtractRegex, fileType }) => {
 
 const startFunc = ({ fileContent, fileType }) => {
     let lines;
+
     const regexForPullLines = getRegexForPullLines({ inExtractRegex: extractRegex, fileType });
     const regexForPullLinesStory = getRegexForPullLinesStory({ inExtractRegex: extractRegex, fileType });
 
