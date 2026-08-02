@@ -31,8 +31,9 @@ export default {
 
             // setupRoutes(app);
             // const { port } = startServer(app);
-            variablesDeclareHere:
-                /setupRoutes\s*\(\s*app\s*\)\s*;[\s\S]*?const\s*\{\s*port\s*\}\s*=\s*startServer\s*\(\s*app\s*\)\s*;/gm
+            variablesDeclareHere1:
+                /setupRoutes\s*\(\s*app\s*\)\s*;[\s\S]*?const\s*\{\s*port\s*\}\s*=\s*startServer\s*\(\s*app\s*\)\s*;/gm,
+            variablesDeclareHere: /^[ \t]*const\b[\s\S]*?;/gm
         },
         fromRoutesJs: {
             importNpmRegex: /^[ \t]*import\b.*from\s+['"](?!\.{1,2}\/|\/)[^'"]+['"];/gm,
