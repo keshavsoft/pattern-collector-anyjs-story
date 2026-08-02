@@ -150,5 +150,17 @@ export default {
             importRegex: `import {0} from './{1}/controller.js';`,
             consumptionRegex: `router.get('/{0}', (req, res) => {1}({ req, res, inTablePath: tablePath }));`
         }
+    },
+    toInsertIndex: {
+        import: [
+            "importLines.first",
+            "importLinesFromNpm.last",
+            "first"
+        ],
+        consumption: [
+            "useLines.first",
+            "variablesDeclareHereLines.last",
+            "last"
+        ]
     }
 };
