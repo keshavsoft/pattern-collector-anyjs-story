@@ -1,8 +1,9 @@
 import patternCollector from "../patternCollector/index.js";
 
 const pullLines = ({ fileContent, importSearchRegex, consumptionSearchRegex,
-    exportSearchRegex, importSearchNpmRegex
+    exportSearchRegex, importSearchNpmRegex, variablesDeclareHereSearchRegex
 }) => {
+
     let allLines;
 
     const importLinesFromNpm = patternCollector({
@@ -31,12 +32,18 @@ const pullLines = ({ fileContent, importSearchRegex, consumptionSearchRegex,
         searchRegex: exportSearchRegex
     });
 
+    const variablesDeclareHereLines = patternCollector({
+        fileContent,
+        searchRegex: variablesDeclareHereSearchRegex
+    });
+
     return {
         allLines,
         importLinesFromNpm,
         importLines,
         useLines,
-        exportLines
+        exportLines,
+        variablesDeclareHereLines
     };
 };
 
@@ -45,7 +52,8 @@ const getRegexForPullLines = ({ inExtractRegex, fileType }) => {
         consumptionSearchRegex: inExtractRegex.searchRules[fileType].consumptionRegex,
         importSearchRegex: inExtractRegex.searchRules[fileType].importRegex,
         exportSearchRegex: inExtractRegex.searchRules[fileType].exportRegex,
-        importSearchNpmRegex: inExtractRegex.searchRules[fileType].importNpmRegex
+        importSearchNpmRegex: inExtractRegex.searchRules[fileType].importNpmRegex,
+        variablesDeclareHereSearchRegex: inExtractRegex.searchRules[fileType].variablesDeclareHere
     };
 };
 

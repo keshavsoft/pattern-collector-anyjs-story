@@ -5,6 +5,7 @@ import patternCollector from "../patternCollector/index.js";
 const pullLinesStory = ({ inLines, importNpmRegex, importRegex,
     consumptionRegex, exportRegex
 }) => {
+
     const importLinesFromNpm = inLines?.importLinesFromNpm.map(element => {
         let fromPatternBase;
         fromPatternBase = patternBase({
