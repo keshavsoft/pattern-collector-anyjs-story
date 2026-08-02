@@ -6,22 +6,16 @@ import extractRegex from './extractRegex.js';
 const startFunc = ({ fileContent, fileType }) => {
     let lines;
 
-    // const regexForPullLinesStory = getRegexForPullLinesStory({ inExtractRegex: extractRegex, fileType });
-
     const importLines = pullLines({
         fileContent, inExtractRegex: extractRegex,
         fileType
     });
 
     const importLinesStory = pullLinesStory({
-        fileContent, inExtractRegex: extractRegex,
+        inLines: importLines?.lines,
+        inExtractRegex: extractRegex,
         fileType
     });
-
-    // const linesStory = pullLinesStory({
-    //     inLines: lines,
-    //     ...regexForPullLinesStory
-    // });
 
     return {
         lines: importLines.lines,
