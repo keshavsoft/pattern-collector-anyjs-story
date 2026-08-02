@@ -155,12 +155,12 @@ export default {
         import: [
             "importLines.first",
             "importLinesFromNpm.last",
-            "first"
+            "firstLineIndex"
         ],
         consumption: [
             "useLines.first",
             "variablesDeclareHereLines.last",
-            "last"
+            "lastLineIndex"
         ]
     }
 };
