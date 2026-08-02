@@ -1,30 +1,36 @@
 import pullLines from "./pullLines/index.js";
 import pullLinesStory from "./pullLinesStory/index.js";
+import firstAndLast from "./buildLinesIndexes/firstAndLast.js";
+import onlyIndexes from "./buildLinesIndexes/onlyIndexes.js";
 
 import extractRegex from './extractRegex.js';
 
 const startFunc = ({ fileContent, fileType }) => {
     let lines;
 
-    const importLines = pullLines({
+    const linesInfo = pullLines({
         fileContent, inExtractRegex: extractRegex,
         fileType
     });
 
-    const importLinesStory = pullLinesStory({
-        inLines: importLines?.lines,
+    const story = pullLinesStory({
+        inLines: linesInfo?.lines,
         inExtractRegex: extractRegex,
         fileType
     });
 
+    const firstAndLastValues = firstAndLast({ lines: linesInfo?.lines });
+    const onlyIndexesValues = onlyIndexes({ lines: linesInfo?.lines });
+
     return {
-        lines: importLines.lines,
-        regexForPullLines: importLines.regexForPullLines,
-        linesStory: importLinesStory.linesStory,
-        regexForPullLinesStory: importLinesStory.regexForPullLinesStory,
+        lines: linesInfo.lines,
+        regexForPullLines: linesInfo.regexForPullLines,
+        linesStory: story.linesStory,
+        regexForPullLinesStory: story.regexForPullLinesStory,
         extractRegex,
         variablesConnection: extractRegex?.variablesConnection[fileType],
-        reverseTemplates: extractRegex?.reverseTemplates[fileType]
+        reverseTemplates: extractRegex?.reverseTemplates[fileType],
+        firstAndLastValues, onlyIndexesValues
     };
 };
 
