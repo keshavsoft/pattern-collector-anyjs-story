@@ -7,7 +7,7 @@ import bothLines from './bothLines/test.js';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const appJsPath = path.join(__dirname, "routes.js");
 
-const folderNameToInsert = "v3";
+const folderNameToInsert = "Fold2";
 const fileType = "fromRoutesJsEnd";
 
 bothLines({

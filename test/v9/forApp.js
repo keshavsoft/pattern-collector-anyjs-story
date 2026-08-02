@@ -7,7 +7,7 @@ import bothLines from './bothLines/test.js';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const appJsPath = path.join(__dirname, "app.js");
 
-const folderNameToInsert = "api1";
+const folderNameToInsert = "api2";
 const fileType = "fromAppJs";
 
 bothLines({
