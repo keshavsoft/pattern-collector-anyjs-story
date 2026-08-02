@@ -153,13 +153,13 @@ export default {
     },
     toInsertIndex: {
         import: [
-            "importLines.first",
-            "importLinesFromNpm.last",
+            "importLines.firstLineIndex",
+            "importLinesFromNpm.lastLineIndex",
             "firstLineIndex"
         ],
         consumption: [
             "useLines.first",
-            "variablesDeclareHereLines.last",
+            "variablesDeclareHereLines.lastLineIndex",
             "lastLineIndex"
         ]
     }
