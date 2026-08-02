@@ -32,7 +32,7 @@ export default {
             // setupRoutes(app);
             // const { port } = startServer(app);
             variablesDeclareHere:
-                /setupRoutes\s*\(\s*app\s*\)\s*;[\s\S]*?const\s*\{\s*port\s*\}\s*=\s*startServer\s*\(\s*app\s*\)\s*;/m
+                /setupRoutes\s*\(\s*app\s*\)\s*;[\s\S]*?const\s*\{\s*port\s*\}\s*=\s*startServer\s*\(\s*app\s*\)\s*;/gm
         },
         fromRoutesJs: {
             importNpmRegex: /^[ \t]*import\b.*from\s+['"](?!\.{1,2}\/|\/)[^'"]+['"];/gm,
