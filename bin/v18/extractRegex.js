@@ -23,6 +23,12 @@ export default {
             importRegex: /^[ \t]*import\s*\{\s*router\s+as\s+\w+\s*\}\s*from\s*['"]\.\/[^'"]+\/end-points\.js['"]\s*;?/gm,
             consumptionRegex: /^[ \t]*router\.use\b.*?;/gm,
             exportRegex: /export\s*\{\s*(\w+)\s*\}\s*;?/gm
+        },
+        fromEndPointsJs: {
+            importNpmRegex: /^[ \t]*import\b.*from\s+['"](?!\.{1,2}\/|\/)[^'"]+['"];/gm,
+            importRegex: /^[ \t]*import\b.*from\s+['"]\.\/[^'"]+\/controller\.js['"]\s*;?/gm,
+            consumptionRegex: /^[ \t]*router\.(?:get|post|put|delete|patch)\b.*;?/gm,
+            exportRegex: /export\s*\{\s*(\w+)\s*\}\s*;?/gm
         }
     },
     parseRules: {
@@ -79,12 +85,29 @@ export default {
                 reverseTemplate: `router.use("/{0}", {1});`
             },
             exportRegex: ""
+        },
+        fromEndPointsJs: {
+            importNpmRegex: {
+                nParts: 2,
+                parseRegex: /^import\s+(\w+)\s+from\s+['"]([^'"]+)['"];?$/,
+                template: "import {0} from '{1}';"
+            },
+            importRegex: {
+                nParts: 2,
+                parseRegex: /import\s+(\w+)\s+from\s*['"]\.\/([^/]+)\/controller\.js['"]/
+            },
+            consumptionRegex: {
+                nParts: 2,
+                parseRegex: /router\.\w+\(\s*['"]\/?([^'"]+)['"][\s\S]*?\b(funcFrom\w+)\s*\(/
+            },
+            exportRegex: ""
         }
     },
     variablesConnection: {
         fromRoutesJs: "routerFrom",
         fromAppJs: "routerFrom",
         fromRoutesJsEnd: "routerFrom",
+        fromEndPointsJs: "funcFrom",
     },
     reverseTemplates: {
         fromRoutesJs: {
@@ -98,6 +121,11 @@ export default {
         fromRoutesJsEnd: {
             importRegex: `import { router as {0} } from './{1}/end-points.js';`,
             consumptionRegex: `router.use("/{0}", {1});`
+        },
+        fromEndPointsJs: {
+            importNpmRegex: "import {0} from '{1}';",
+            importRegex: `import {0} from './{1}/controller.js';`,
+            consumptionRegex: `router.get('/{0}', (req, res) => {1}({ req, res, inTablePath: tablePath }));`
         }
     }
 };
