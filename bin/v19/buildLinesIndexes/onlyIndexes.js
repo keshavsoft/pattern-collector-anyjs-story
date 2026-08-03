@@ -5,7 +5,7 @@ const commonFunc = ({ inLines }) => {
 
         return {
             firstLineIndex: firstLine?.lineNumber,
-            lastLineIndex: firstLine?.lineNumber
+            lastLineIndex: lastLine?.lineNumber
         };
     };
 };
