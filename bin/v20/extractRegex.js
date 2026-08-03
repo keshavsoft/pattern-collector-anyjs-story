@@ -201,5 +201,17 @@ export default {
                 "lastLineIndex"
             ]
         },
+        fromEndPointsJs: {
+            import: [
+                "importLines.firstLineIndex",
+                "importLinesFromNpm.lastLineIndex",
+                "firstLineIndex"
+            ],
+            consumption: [
+                "useLines.firstLineIndex",
+                "variablesDeclareHereLines.lastLineIndex",
+                "lastLineIndex"
+            ]
+        }
     }
 };
