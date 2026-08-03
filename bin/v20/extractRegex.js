@@ -39,7 +39,8 @@ export default {
             importNpmRegex: /^[ \t]*import\b.*from\s+['"](?!\.{1,2}\/|\/)[^'"]+['"];/gm,
             importRegex: /^[ \t]*import\s*\{\s*router\s+as\s+\w+\s*\}\s*from\s*['"]\.\/[^'"]+\/routes\.js['"]\s*;?/gm,
             consumptionRegex: /^[ \t]*router\.use\b.*?;/gm,
-            exportRegex: /export\s*\{\s*(\w+)\s*\}\s*;?/gm
+            exportRegex: /export\s*\{\s*(\w+)\s*\}\s*;?/gm,
+            variablesDeclareHere: /^[ \t]*const\b[\s\S]*?;/gm
         },
         fromRoutesJsEnd: {
             importNpmRegex: /^[ \t]*import\b.*from\s+['"](?!\.{1,2}\/|\/)[^'"]+['"];/gm,
@@ -52,7 +53,8 @@ export default {
             importNpmRegex: /^[ \t]*import\b.*from\s+['"](?!\.{1,2}\/|\/)[^'"]+['"];/gm,
             importRegex: /^[ \t]*import\b.*from\s+['"]\.\/[^'"]+\/controller\.js['"]\s*;?/gm,
             consumptionRegex: /^[ \t]*router\.(?:get|post|put|delete|patch)\b.*;?/gm,
-            exportRegex: /export\s*\{\s*(\w+)\s*\}\s*;?/gm
+            exportRegex: /export\s*\{\s*(\w+)\s*\}\s*;?/gm,
+            variablesDeclareHere: /^[ \t]*const\b[\s\S]*?;/gm
         }
     },
     parseRules: {
@@ -186,6 +188,18 @@ export default {
                 "variablesDeclareHereLines.lastLineIndex",
                 "lastLineIndex"
             ]
-        }
+        },
+        fromRoutesJs: {
+            import: [
+                "importLines.firstLineIndex",
+                "importLinesFromNpm.lastLineIndex",
+                "firstLineIndex"
+            ],
+            consumption: [
+                "useLines.firstLineIndex",
+                "variablesDeclareHereLines.lastLineIndex",
+                "lastLineIndex"
+            ]
+        },
     }
 };
