@@ -48,6 +48,20 @@ export default {
             consumptionRegex: /^[ \t]*router\.(?:get|post|put|delete|patch)\b.*;?/gm,
             exportRegex: /export\s*\{\s*(\w+)\s*\}\s*;?/gm,
             variablesDeclareHere: /^[ \t]*const\b[\s\S]*?;/gm
+        },
+        tableGetShowAll: {
+            importNpmRegex: /^[ \t]*import\b.*from\s+['"](?!\.{1,2}\/|\/)[^'"]+['"];/gm,
+            importRegex: /^[ \t]*import\b.*from\s+['"]\.\/[^'"]+\/controller\.js['"]\s*;?/gm,
+            consumptionRegex: /^[ \t]*router\.(?:get|post|put|delete|patch)\b.*;?/gm,
+            exportRegex: /export\s*\{\s*(\w+)\s*\}\s*;?/gm,
+            variablesDeclareHere: /^[ \t]*const\b[\s\S]*?;/gm
+        },
+        tableGetFind: {
+            importNpmRegex: /^[ \t]*import\b.*from\s+['"](?!\.{1,2}\/|\/)[^'"]+['"];/gm,
+            importRegex: /^[ \t]*import\b.*from\s+['"]\.\/[^'"]+\/controller\.js['"]\s*;?/gm,
+            consumptionRegex: /^[ \t]*router\.(?:get|post|put|delete|patch)\b.*;?/gm,
+            exportRegex: /export\s*\{\s*(\w+)\s*\}\s*;?/gm,
+            variablesDeclareHere: /^[ \t]*const\b[\s\S]*?;/gm
         }
     },
     parseRules: {
@@ -120,6 +134,38 @@ export default {
                 parseRegex: /router\.\w+\(\s*['"]\/?([^'"]+)['"][\s\S]*?\b(funcFrom\w+)\s*\(/
             },
             exportRegex: ""
+        },
+        tableGetShowAll: {
+            importNpmRegex: {
+                nParts: 2,
+                parseRegex: /^import\s+(\w+)\s+from\s+['"]([^'"]+)['"];?$/,
+                template: "import {0} from '{1}';"
+            },
+            importRegex: {
+                nParts: 2,
+                parseRegex: /import\s+(\w+)\s+from\s*['"]\.\/([^/]+)\/controller\.js['"]/
+            },
+            consumptionRegex: {
+                nParts: 2,
+                parseRegex: /router\.\w+\(\s*['"]\/?([^'"]+)['"][\s\S]*?\b(funcFrom\w+)\s*\(/
+            },
+            exportRegex: ""
+        },
+        tableGetFind: {
+            importNpmRegex: {
+                nParts: 2,
+                parseRegex: /^import\s+(\w+)\s+from\s+['"]([^'"]+)['"];?$/,
+                template: "import {0} from '{1}';"
+            },
+            importRegex: {
+                nParts: 2,
+                parseRegex: /import\s+(\w+)\s+from\s*['"]\.\/([^/]+)\/controller\.js['"]/
+            },
+            consumptionRegex: {
+                nParts: 2,
+                parseRegex: /router\.\w+\(\s*['"]\/?([^'"]+)['"][\s\S]*?\b(funcFrom\w+)\s*\(/
+            },
+            exportRegex: ""
         }
     },
     variablesConnection: {
@@ -145,6 +191,16 @@ export default {
             importNpmRegex: "import {0} from '{1}';",
             importRegex: `import {0} from './{1}/controller.js';`,
             consumptionRegex: `router.get('/{1}', (req, res) => {0}({ req, res, inTablePath: tablePath }));`
+        },
+        tableGetShowAll: {
+            importNpmRegex: "import {0} from '{1}';",
+            importRegex: `import {0} from './{1}/controller.js';`,
+            consumptionRegex: `router.get('/{1}', (req, res) => {0}({ req, res, inTablePath: tablePath }));`
+        },
+        tableGetFind: {
+            importNpmRegex: "import {0} from '{1}';",
+            importRegex: `import {0} from './{1}/controller.js';`,
+            consumptionRegex: `router.get('/{1}/:columnName', (req, res) => {0}({ req, res, inTablePath: tablePath }));`
         }
     },
     toInsertIndex: {
