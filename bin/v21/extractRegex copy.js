@@ -131,7 +131,7 @@ export default {
     reverseTemplates: {
         fromRoutesJs: {
             importRegex: `import { router as {0} } from './{1}/routes.js';`,
-            consumptionRegex: `router.use("/{1}", {0});`
+            consumptionRegex: `router.use("/{0}", {1});`
         },
         fromAppJs: {
             importRegex: `import { router as {0} } from './{1}/routes.js';`,
@@ -139,12 +139,12 @@ export default {
         },
         fromRoutesJsEnd: {
             importRegex: `import { router as {0} } from './{1}/end-points.js';`,
-            consumptionRegex: `router.use("/{1}", {0});`
+            consumptionRegex: `router.use("/{0}", {1});`
         },
         fromEndPointsJs: {
             importNpmRegex: "import {0} from '{1}';",
             importRegex: `import {0} from './{1}/controller.js';`,
-            consumptionRegex: `router.get('/{1}', (req, res) => {0}({ req, res, inTablePath: tablePath }));`
+            consumptionRegex: `router.get('/{0}', (req, res) => {1}({ req, res, inTablePath: tablePath }));`
         }
     },
     toInsertIndex: {
