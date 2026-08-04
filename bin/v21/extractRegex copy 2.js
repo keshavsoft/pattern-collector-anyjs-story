@@ -1,5 +1,4 @@
 export default {
-    version: "21.3",
     files: [
         "fromAppJs",
         "fromRoutesJs",
@@ -242,30 +241,6 @@ export default {
             ]
         },
         fromEndPointsJs: {
-            import: [
-                "importLines.firstLineIndex",
-                "importLinesFromNpm.lastLineIndex",
-                "firstLineIndex"
-            ],
-            consumption: [
-                "useLines.firstLineIndex",
-                "variablesDeclareHereLines.lastLineIndex",
-                "lastLineIndex"
-            ]
-        },
-        tableGetShowAll: {
-            import: [
-                "importLines.firstLineIndex",
-                "importLinesFromNpm.lastLineIndex",
-                "firstLineIndex"
-            ],
-            consumption: [
-                "useLines.firstLineIndex",
-                "variablesDeclareHereLines.lastLineIndex",
-                "lastLineIndex"
-            ]
-        },
-        tableGetFind: {
             import: [
                 "importLines.firstLineIndex",
                 "importLinesFromNpm.lastLineIndex",
