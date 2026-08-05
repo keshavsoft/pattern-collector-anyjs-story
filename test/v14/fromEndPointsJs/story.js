@@ -21,8 +21,5 @@ const story = defaultFunc({
 // console.log("2 : ", JSON.stringify(story.linesStory.importLines[0], null, 4));
 // console.log("3 : ", JSON.stringify(story.lines.useLines[0], null, 4));
 // console.log("4 : ", JSON.stringify(story.linesStory.useLines[0], null, 4));
-
 console.log("2 : ", JSON.stringify(story.linesStory.useLines[0], null, 4));
-
-// console.log("4 : ", JSON.stringify(story, null, 4));
 

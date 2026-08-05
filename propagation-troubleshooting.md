@@ -1,6 +1,6 @@
 # Troubleshooting Dependency Propagation Issue
 
-This document explains why a version release of `pattern-collector-anyjs-extract` did not trigger the downstream dependency update workflow in `pattern-collector-anyjs-pull-lines`, the changes made to improve visibility, and the steps to resolve and test it.
+This document explains why a version release of `pattern-collector-anyjs-extract` did not trigger the downstream dependency update workflow in `pattern-collector-anyjs-story`, the changes made to improve visibility, and the steps to resolve and test it.
 
 ---
 
@@ -10,7 +10,7 @@ When a package version is manually triggered and published, the workflow run suc
 * The **`publish`** job succeeds (deploying to NPM).
 * The **`notify-dependents`** job also succeeds.
 
-However, the downstream repository `pattern-collector-anyjs-pull-lines` does **not** trigger its `Update dependency` workflow. 
+However, the downstream repository `pattern-collector-anyjs-story` does **not** trigger its `Update dependency` workflow. 
 
 ### Silent Curl Failure
 The Callee workflow calls the GitHub Repository Dispatches API via `curl`:
@@ -18,7 +18,7 @@ The Callee workflow calls the GitHub Repository Dispatches API via `curl`:
 curl -X POST \
   -H "Accept: application/vnd.github+json" \
   -H "Authorization: Bearer ${{ secrets.REPO_DISPATCH_TOKEN }}" \
-  https://api.github.com/repos/keshavsoft/pattern-collector-anyjs-pull-lines/dispatches \
+  https://api.github.com/repos/keshavsoft/pattern-collector-anyjs-story/dispatches \
   -d '{"event_type":"dependency-updated"}'
 ```
 By default, `curl` exits with status code `0` (success) even when the API returns an error status code (such as `401 Unauthorized` or `404 Not Found`). Because `curl` did not fail the build step, the workflow ran completely green, hiding the authorization/dispatch failure.
@@ -29,7 +29,7 @@ By default, `curl` exits with status code `0` (success) even when the API return
 
 To bring visibility to the API dispatch responses and make debugging possible, the `-i` flag (or standard conditional check blocks) has been added to `curl` in the notification workflows across these repositories:
 * `pattern-collector-anyjs-extract/.github/workflows/publish-conditional.yml`
-* `pattern-collector-anyjs-pull-lines/.github/workflows/publish-conditional.yml`
+* `pattern-collector-anyjs-story/.github/workflows/publish-conditional.yml`
 * `pattern-collector-anyjs-matches/.github/workflows/publish-conditional.yml`
 
 Using `curl -i` or response checks dumps the HTTP response status, headers, and JSON error responses directly into the GitHub Actions step logs.
@@ -53,8 +53,7 @@ The `REPO_DISPATCH_TOKEN` must be a valid GitHub Personal Access Token (PAT) wit
 1. Go to the **Actions** tab in `pattern-collector-anyjs-extract`.
 2. Select **NPM Check, Publish and Notify**.
 3. Click **Run workflow** (run on the `main` branch).
-4. Wait for the workflow to reach the `notify-dependents` job, click it, and expand the **Notify pattern-collector-anyjs-pull-lines** step.
+4. Wait for the workflow to reach the `notify-dependents` job, click it, and expand the **Notify pattern-collector-anyjs-story** step.
 5. Inspect the response headers:
    * **`HTTP/2 204`**: Success! The downstream dispatch has successfully triggered the update.
    * **`HTTP/2 401` or `HTTP/2 404`**: The token is invalid, expired, or lacks write access permissions on the destination repository.
-

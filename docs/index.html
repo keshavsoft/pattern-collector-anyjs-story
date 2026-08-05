@@ -4,7 +4,7 @@
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>pattern-collector-anyjs-pull-lines 🔍 | Structured Pattern Extractor Docs</title>
+   <title>pattern-collector-anyjs-story 🔍 | Structured Pattern Extractor Docs</title>
    
    <!-- Google Fonts -->
    <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -562,12 +562,12 @@
    <div class="container">
       <nav>
          <a href="#" class="logo">
-            <span>pattern-collector-anyjs-pull-lines</span> 🔍
+            <span>pattern-collector-anyjs-story</span> 🔍
          </a>
          <div class="nav-links">
             <a href="dependencies.html">Dependency Explorer</a>
-            <a href="https://www.npmjs.com/package/pattern-collector-anyjs-pull-lines" target="_blank">NPM Package</a>
-            <a href="https://github.com/keshavsoft/pattern-collector-anyjs-pull-lines" target="_blank">GitHub</a>
+            <a href="https://www.npmjs.com/package/pattern-collector-anyjs-story" target="_blank">NPM Package</a>
+            <a href="https://github.com/keshavsoft/pattern-collector-anyjs-story" target="_blank">GitHub</a>
          </div>
       </nav>
 
@@ -598,9 +598,9 @@
                Installation
             </h2>
             <p>Add the pattern collector to your Node.js project using npm or yarn:</p>
-            <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>npm install pattern-collector-anyjs-pull-lines</code></pre>
+            <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>npm install pattern-collector-anyjs-story</code></pre>
             <p>Or using yarn:</p>
-            <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>yarn add pattern-collector-anyjs-pull-lines</code></pre>
+            <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>yarn add pattern-collector-anyjs-story</code></pre>
          </div>
 
          <!-- Card 2: Quick Start -->
@@ -609,19 +609,12 @@
                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-1H9v1zm3-19C8.14 2 5 5.14 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.86-3.14-7-7-7zm2.85 11.1l-.85.6V16h-4v-2.3l-.85-.6C7.8 12.16 7 10.63 7 9c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.63-.8 3.16-2.15 4.1z"/></svg>
                Quick Start
             </h2>
-            <p>Import the default function and pass your code text along with your regex configurations:</p>
-            <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>import pullLines from 'pattern-collector-anyjs-pull-lines';
+            <p>Import the default function and pass your code text along with your configuration template name:</p>
+            <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>import collectPatternStory from 'pattern-collector-anyjs-story';
 
-const results = pullLines({
+const results = collectPatternStory({
   fileContent: sourceCode,
-  importRegex: {
-    parseRegex: /import\s*\{[^}]*router\s+as\s+(\w+)[^}]*\}\s*from\s*['"]\.\/([^/]+)\/.*['"]/,
-    searchString: /^[ \t]*import\b.*from\s+['"]\.[^'"]*['"];/gm
-  },
-  consumptionRegex: {
-    parseRegex: /router\.use\s*\(\s*['"`]\/?([^'"`]+)['"`]\s*,\s*(\w+)/,
-    searchString: /^[ \t]*router\.use\b.*?;/gm
-  }
+  fileType: 'fromEndPointsJs'
 });</code></pre>
          </div>
 
@@ -633,11 +626,8 @@ const results = pullLines({
             </h2>
             <p>This repository is built as a composition of modular sub-packages:</p>
             <ul style="list-style: none; padding-left: 0; margin-top: 10px; display: flex; flex-direction: column; gap: 8px;">
-               <li>🔗 <a href="https://www.npmjs.com/package/pattern-collector-anyjs-pull-lines-all" target="_blank" style="color: var(--accent); text-decoration: none; font-weight: 500;">pattern-collector-anyjs-pull-lines-all</a></li>
-               <li>🔗 <a href="https://www.npmjs.com/package/pattern-collector-anyjs-pull-lines-consumption" target="_blank" style="color: var(--accent); text-decoration: none; font-weight: 500;">pattern-collector-anyjs-pull-lines-consumption</a></li>
-               <li>🔗 <a href="https://www.npmjs.com/package/pattern-collector-anyjs-pull-lines-export" target="_blank" style="color: var(--accent); text-decoration: none; font-weight: 500;">pattern-collector-anyjs-pull-lines-export</a></li>
-               <li>🔗 <a href="https://www.npmjs.com/package/pattern-collector-anyjs-pull-lines-import" target="_blank" style="color: var(--accent); text-decoration: none; font-weight: 500;">pattern-collector-anyjs-pull-lines-import</a></li>
-               <li>🔗 <a href="https://www.npmjs.com/package/pattern-collector-anyjs-pull-lines-import-npm" target="_blank" style="color: var(--accent); text-decoration: none; font-weight: 500;">pattern-collector-anyjs-pull-lines-import-npm</a></li>
+               <li>🔗 <a href="https://www.npmjs.com/package/pattern-collector-base-files" target="_blank" style="color: var(--accent); text-decoration: none; font-weight: 500;">pattern-collector-base-files</a></li>
+               <li>🔗 <a href="https://www.npmjs.com/package/pattern-collector-base-regex-n-parts" target="_blank" style="color: var(--accent); text-decoration: none; font-weight: 500;">pattern-collector-base-regex-n-parts</a></li>
             </ul>
          </div>
       </div>
@@ -649,7 +639,7 @@ const results = pullLines({
             API Reference
          </h2>
          <p>The library default exports a function taking a configuration object:</p>
-         <pre><code>pullLines({ fileContent, importRegex, consumptionRegex, showLog, showLogStep1 })</code></pre>
+         <pre><code>collectPatternStory({ fileContent, fileType })</code></pre>
          
          <table class="api-table">
             <thead>
@@ -666,27 +656,9 @@ const results = pullLines({
                   <td>The raw text / source code of the file to search.</td>
                </tr>
                <tr>
-                  <td style="font-family: 'Fira Code', monospace; color: var(--accent);">importRegex</td>
-                  <td style="font-family: 'Fira Code', monospace;">Object</td>
-                  <td>
-                     Contains matching settings for imports:
-                     <br>• <code style="color: var(--accent-secondary)">searchRegex / searchString</code> (RegExp): Scans for the lines.
-                     <br>• <code style="color: var(--accent-secondary)">parseRegex</code> (RegExp): Extracts capturing variables (e.g. Variable, Folder).
-                  </td>
-               </tr>
-               <tr>
-                  <td style="font-family: 'Fira Code', monospace; color: var(--accent);">consumptionRegex</td>
-                  <td style="font-family: 'Fira Code', monospace;">Object</td>
-                  <td>
-                     Contains matching settings for route consumptions:
-                     <br>• <code style="color: var(--accent-secondary)">searchRegex / searchString</code> (RegExp): Scans for usage lines.
-                     <br>• <code style="color: var(--accent-secondary)">parseRegex</code> (RegExp): Extracts capturing variables (e.g. Endpoint, Variable).
-                  </td>
-               </tr>
-               <tr>
-                  <td style="font-family: 'Fira Code', monospace; color: var(--accent);">showLog</td>
-                  <td style="font-family: 'Fira Code', monospace;">boolean</td>
-                  <td><em>Optional.</em> Enables verbose node-level console logging.</td>
+                  <td style="font-family: 'Fira Code', monospace; color: var(--accent);">fileType</td>
+                  <td style="font-family: 'Fira Code', monospace;">string</td>
+                  <td>The configuration template to use (e.g. <code>'fromEndPointsJs'</code>, <code>'fromRoutesJs'</code>).</td>
                </tr>
             </tbody>
          </table>

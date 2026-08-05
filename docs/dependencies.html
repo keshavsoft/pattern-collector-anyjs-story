@@ -4,7 +4,7 @@
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Dependency Explorer | pattern-collector-anyjs-pull-lines</title>
+   <title>Dependency Explorer | pattern-collector-anyjs-story</title>
    
    <!-- Google Fonts -->
    <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -413,8 +413,8 @@
 <body>
    <div class="container">
       <nav>
-         <a href="#" class="logo">
-            <span>pattern-collector</span> 🔍
+         <a href="index.html" class="logo">
+            <span>pattern-collector-anyjs-story</span> 🔍
          </a>
          <div class="nav-links">
             <a href="index.html" class="back-btn">
@@ -447,60 +447,20 @@
                <!-- Level 0: Root -->
                <div class="tree-level">
                   <div class="node-card root-node selected" id="node-root" onclick="selectPackage('root')">
-                     <div class="node-title">pattern-collector-anyjs-pull-lines</div>
-                     <span class="node-version">v1.13.1</span>
+                     <div class="node-title">pattern-collector-anyjs-story</div>
+                     <span class="node-version">v1.23.2</span>
                   </div>
                </div>
 
                <!-- Level 1: Direct Dependencies -->
                <div class="tree-level">
-                  <div class="node-card" id="node-pull-lines-all" onclick="selectPackage('pull-lines-all')">
-                     <div class="node-title">pattern-collector-anyjs-pull-lines-all</div>
-                     <span class="node-version">v1.3.3</span>
+                  <div class="node-card" id="node-base-files" onclick="selectPackage('base-files')">
+                     <div class="node-title">pattern-collector-base-files</div>
+                     <span class="node-version">v1.3.1</span>
                   </div>
-                  <div class="node-card" id="node-pull-lines-consumption" onclick="selectPackage('pull-lines-consumption')">
-                     <div class="node-title">pattern-collector-anyjs-pull-lines-consumption</div>
-                     <span class="node-version">v1.2.1</span>
-                  </div>
-                  <div class="node-card" id="node-pull-lines-export" onclick="selectPackage('pull-lines-export')">
-                     <div class="node-title">pattern-collector-anyjs-pull-lines-export</div>
-                     <span class="node-version">v1.2.2</span>
-                  </div>
-                  <div class="node-card" id="node-pull-lines-import" onclick="selectPackage('pull-lines-import')">
-                     <div class="node-title">pattern-collector-anyjs-pull-lines-import</div>
-                     <span class="node-version">v1.9.3</span>
-                  </div>
-                  <div class="node-card" id="node-pull-lines-import-npm" onclick="selectPackage('pull-lines-import-npm')">
-                     <div class="node-title">pattern-collector-anyjs-pull-lines-import-npm</div>
-                     <span class="node-version">v1.2.1</span>
-                  </div>
-               </div>
-
-               <!-- Level 2: Transitive Dependency -->
-               <div class="tree-level">
-                  <div class="node-card" id="node-extract" onclick="selectPackage('extract')">
-                     <div class="node-title">pattern-collector-anyjs-extract</div>
-                     <span class="node-version">v1.4.6</span>
-                  </div>
-               </div>
-
-               <!-- Level 3: Sub Dependencies -->
-               <div class="tree-level">
-                  <div class="node-card" id="node-matches" onclick="selectPackage('matches')">
-                     <div class="node-title">pattern-collector-anyjs-matches</div>
-                     <span class="node-version">v1.3.8</span>
-                  </div>
-                  <div class="node-card" id="node-base-regex" onclick="selectPackage('base-regex')">
-                     <div class="node-title">pattern-collector-base-regex</div>
-                     <span class="node-version">v1.3.2</span>
-                  </div>
-               </div>
-
-               <!-- Level 4: Leaf Dependency -->
-               <div class="tree-level">
-                  <div class="node-card" id="node-collector" onclick="selectPackage('collector')">
-                     <div class="node-title">pattern-collector</div>
-                     <span class="node-version">v1.5.19</span>
+                  <div class="node-card" id="node-base-regex-n-parts" onclick="selectPackage('base-regex-n-parts')">
+                     <div class="node-title">pattern-collector-base-regex-n-parts</div>
+                     <span class="node-version">v1.6.10</span>
                   </div>
                </div>
             </div>
@@ -509,20 +469,20 @@
          <!-- Right Side: Details Card -->
          <div class="detail-card">
             <div class="detail-header">
-               <div class="detail-name" id="detail-name">pattern-collector-anyjs-pull-lines</div>
-               <div class="detail-desc" id="detail-desc">pull lines from content using supplied regex</div>
+               <div class="detail-name" id="detail-name">pattern-collector-anyjs-story</div>
+               <div class="detail-desc" id="detail-desc">traces pattern matching dependencies, story flows and computes matched line indexes</div>
                <div class="detail-tags" id="detail-tags">
                   <span class="tag">pattern</span>
                   <span class="tag">regex</span>
                   <span class="tag">parser</span>
-                  <span class="tag">import</span>
+                  <span class="tag">story</span>
                </div>
             </div>
 
             <div class="meta-list">
                <div class="meta-item">
                   <span class="meta-label">Version Installed</span>
-                  <span class="meta-value" id="detail-version">v1.13.1</span>
+                  <span class="meta-value" id="detail-version">v1.23.2</span>
                </div>
 
                <div class="meta-item">
@@ -532,20 +492,20 @@
 
                <div class="meta-item">
                   <span class="meta-label">Package Entry Point</span>
-                  <span class="meta-value" style="font-family: 'Fira Code', monospace;" id="detail-entry">import pullLines from 'pattern-collector-anyjs-pull-lines'</span>
+                  <span class="meta-value" style="font-family: 'Fira Code', monospace;" id="detail-entry">import collectPatternStory from 'pattern-collector-anyjs-story'</span>
                </div>
 
                <div class="meta-item">
                   <span class="meta-label">GitHub Repository</span>
                   <span class="meta-value" id="detail-repo">
-                     <a href="https://github.com/keshavsoft/pattern-collector-anyjs-pull-lines" target="_blank" id="detail-repo-link">github.com/keshavsoft/pattern-collector-anyjs-pull-lines</a>
+                     <a href="https://github.com/keshavsoft/pattern-collector-anyjs-story" target="_blank" id="detail-repo-link">github.com/keshavsoft/pattern-collector-anyjs-story</a>
                   </span>
                </div>
 
                <div class="meta-item">
                   <span class="meta-label">How to Install</span>
                   <div class="code-box">
-                     <span id="detail-install">npm install pattern-collector-anyjs-pull-lines</span>
+                     <span id="detail-install">npm install pattern-collector-anyjs-story</span>
                   </div>
                </div>
             </div>
@@ -560,123 +520,39 @@
    <script>
       const packageDb = {
          'root': {
-            name: 'pattern-collector-anyjs-pull-lines',
-            version: 'v1.13.1',
-            desc: 'A powerful, configurable tool to scan JavaScript/ESM files and pull structured line matches using custom regular expressions.',
-            tags: ['pattern', 'regex', 'parser', 'import', 'analyzer', 'esm', 'extractor'],
+            name: 'pattern-collector-anyjs-story',
+            version: 'v1.23.2',
+            desc: 'A powerful, configurable tool to scan JavaScript/ESM files, pull structured line matches, trace import/use stories, and resolve line indexes.',
+            tags: ['pattern', 'regex', 'parser', 'import', 'story', 'esm', 'extractor'],
             scope: 'Root Project (This Repository)',
-            entry: 'import pullLines from \'pattern-collector-anyjs-pull-lines\'',
-            repo: 'https://github.com/keshavsoft/pattern-collector-anyjs-pull-lines',
-            repoName: 'github.com/keshavsoft/pattern-collector-anyjs-pull-lines',
-            install: 'npm install pattern-collector-anyjs-pull-lines',
-            connections: ['pull-lines-all', 'pull-lines-consumption', 'pull-lines-export', 'pull-lines-import', 'pull-lines-import-npm']
+            entry: 'import collectPatternStory from \'pattern-collector-anyjs-story\'',
+            repo: 'https://github.com/keshavsoft/pattern-collector-anyjs-story',
+            repoName: 'github.com/keshavsoft/pattern-collector-anyjs-story',
+            install: 'npm install pattern-collector-anyjs-story',
+            connections: ['base-files', 'base-regex-n-parts']
          },
-         'pull-lines-all': {
-            name: 'pattern-collector-anyjs-pull-lines-all',
-            version: 'v1.3.3',
-            desc: 'A powerful, configurable tool to scan JavaScript/ESM files and pull structured line matches using custom regular expressions.',
-            tags: ['pattern', 'regex', 'parser', 'import', 'analyzer', 'esm', 'extractor'],
+         'base-files': {
+            name: 'pattern-collector-base-files',
+            version: 'v1.3.1',
+            desc: 'Helper templates and configurations to scan JavaScript/ESM files and identify pattern types.',
+            tags: ['pattern', 'regex', 'parser', 'files'],
             scope: 'Direct Dependency (1st level)',
-            entry: 'import pullLinesAll from \'pattern-collector-anyjs-pull-lines-all\'',
-            repo: 'https://github.com/keshavsoft/pattern-collector-anyjs-pull-lines-all',
-            repoName: 'github.com/keshavsoft/pattern-collector-anyjs-pull-lines-all',
-            install: 'npm install pattern-collector-anyjs-pull-lines-all',
-            connections: ['extract']
-         },
-         'pull-lines-consumption': {
-            name: 'pattern-collector-anyjs-pull-lines-consumption',
-            version: 'v1.2.1',
-            desc: 'A powerful, configurable tool to scan JavaScript/ESM files and pull structured line matches using custom regular expressions.',
-            tags: ['pattern', 'regex', 'parser', 'import', 'analyzer', 'esm', 'extractor'],
-            scope: 'Direct Dependency (1st level)',
-            entry: 'import pullLinesConsumption from \'pattern-collector-anyjs-pull-lines-consumption\'',
-            repo: 'https://github.com/keshavsoft/pattern-collector-anyjs-pull-lines-consumption',
-            repoName: 'github.com/keshavsoft/pattern-collector-anyjs-pull-lines-consumption',
-            install: 'npm install pattern-collector-anyjs-pull-lines-consumption',
-            connections: ['extract']
-         },
-         'pull-lines-export': {
-            name: 'pattern-collector-anyjs-pull-lines-export',
-            version: 'v1.2.2',
-            desc: 'A powerful, configurable tool to scan JavaScript/ESM files and pull structured line matches using custom regular expressions.',
-            tags: ['pattern', 'regex', 'parser', 'export', 'analyzer', 'esm', 'extractor'],
-            scope: 'Direct Dependency (1st level)',
-            entry: 'import pullLinesExport from \'pattern-collector-anyjs-pull-lines-export\'',
-            repo: 'https://github.com/keshavsoft/pattern-collector-anyjs-pull-lines-export',
-            repoName: 'github.com/keshavsoft/pattern-collector-anyjs-pull-lines-export',
-            install: 'npm install pattern-collector-anyjs-pull-lines-export',
-            connections: ['extract']
-         },
-         'pull-lines-import': {
-            name: 'pattern-collector-anyjs-pull-lines-import',
-            version: 'v1.9.3',
-            desc: 'A powerful, configurable tool to scan JavaScript/ESM files and pull structured line matches using custom regular expressions.',
-            tags: ['pattern', 'regex', 'parser', 'import', 'analyzer', 'esm', 'extractor'],
-            scope: 'Direct Dependency (1st level)',
-            entry: 'import pullLinesImport from \'pattern-collector-anyjs-pull-lines-import\'',
-            repo: 'https://github.com/keshavsoft/pattern-collector-anyjs-pull-lines-import',
-            repoName: 'github.com/keshavsoft/pattern-collector-anyjs-pull-lines-import',
-            install: 'npm install pattern-collector-anyjs-pull-lines-import',
-            connections: ['extract']
-         },
-         'pull-lines-import-npm': {
-            name: 'pattern-collector-anyjs-pull-lines-import-npm',
-            version: 'v1.2.1',
-            desc: 'A powerful, configurable tool to scan JavaScript/ESM files and pull structured line matches using custom regular expressions.',
-            tags: ['pattern', 'regex', 'parser', 'import-npm', 'analyzer', 'esm', 'extractor'],
-            scope: 'Direct Dependency (1st level)',
-            entry: 'import pullLinesImportNpm from \'pattern-collector-anyjs-pull-lines-import-npm\'',
-            repo: 'https://github.com/keshavsoft/pattern-collector-anyjs-pull-lines-import-npm',
-            repoName: 'github.com/keshavsoft/pattern-collector-anyjs-pull-lines-import-npm',
-            install: 'npm install pattern-collector-anyjs-pull-lines-import-npm',
-            connections: ['extract']
-         },
-         'extract': {
-            name: 'pattern-collector-anyjs-extract',
-            version: 'v1.4.6',
-            desc: 'A high-performance pattern extractor that scans text files and extracts structured group details from matches.',
-            tags: ['pattern', 'regex', 'parser', 'esm', 'extractor'],
-            scope: 'Transitive Dependency (2nd level)',
-            entry: 'import getImportLines from \'pattern-collector-anyjs-extract\'',
-            repo: 'https://github.com/keshavsoft/pattern-collector-anyjs-extract',
-            repoName: 'github.com/keshavsoft/pattern-collector-anyjs-extract',
-            install: 'npm install pattern-collector-anyjs-extract',
-            connections: ['matches', 'base-regex']
-         },
-         'matches': {
-            name: 'pattern-collector-anyjs-matches',
-            version: 'v1.3.8',
-            desc: 'A high-performance pattern matching and line tracking utility for JavaScript/ESM, wrapping pattern-collector.',
-            tags: ['pattern', 'regex', 'parser', 'matches'],
-            scope: 'Transitive Dependency (3rd level)',
-            entry: 'import getAllMatches from \'pattern-collector-anyjs-matches\'',
-            repo: 'https://github.com/keshavsoft/pattern-collector-anyjs-matches',
-            repoName: 'github.com/keshavsoft/pattern-collector-anyjs-matches',
-            install: 'npm install pattern-collector-anyjs-matches',
-            connections: ['collector']
-         },
-         'base-regex': {
-            name: 'pattern-collector-base-regex',
-            version: 'v1.3.2',
-            desc: 'Exposes helper logic to extract captured variables (like aliases or relative folders) from a single code line.',
-            tags: ['pattern', 'regex', 'captures'],
-            scope: 'Transitive Dependency (3rd level) [External]',
-            entry: 'import extractVariable from \'pattern-collector-base-regex\'',
-            repo: 'https://github.com/keshavsoft/pattern-collector-base-regex',
-            repoName: 'github.com/keshavsoft/pattern-collector-base-regex',
-            install: 'npm install pattern-collector-base-regex',
+            entry: 'import { extractRegex } from \'pattern-collector-base-files\'',
+            repo: 'https://github.com/keshavsoft/pattern-collector-base-files',
+            repoName: 'github.com/keshavsoft/pattern-collector-base-files',
+            install: 'npm install pattern-collector-base-files',
             connections: []
          },
-         'collector': {
-            name: 'pattern-collector',
-            version: 'v1.5.19',
-            desc: 'The core matching library. Collects all matching substrings by invoking Regexp.exec over the code contents recursively.',
-            tags: ['pattern', 'regex', 'core'],
-            scope: 'Transitive Dependency (4th level) [External]',
-            entry: 'import patternCollector from \'pattern-collector\'',
-            repo: 'https://github.com/keshavsoft/pattern-collector',
-            repoName: 'github.com/keshavsoft/pattern-collector',
-            install: 'npm install pattern-collector',
+         'base-regex-n-parts': {
+            name: 'pattern-collector-base-regex-n-parts',
+            version: 'v1.6.10',
+            desc: 'A library to parse structured regular expression details with multiple segments.',
+            tags: ['pattern', 'regex', 'n-parts'],
+            scope: 'Direct Dependency (1st level)',
+            entry: 'import baseRegexNParts from \'pattern-collector-base-regex-n-parts\'',
+            repo: 'https://github.com/keshavsoft/pattern-collector-base-regex-n-parts',
+            repoName: 'github.com/keshavsoft/pattern-collector-base-regex-n-parts',
+            install: 'npm install pattern-collector-base-regex-n-parts',
             connections: []
          }
       };
@@ -747,19 +623,8 @@
 
          // Line configuration mapping
          const links = [
-            { from: 'root', to: 'pull-lines-all', id: 'line-root-pull-lines-all' },
-            { from: 'root', to: 'pull-lines-consumption', id: 'line-root-pull-lines-consumption' },
-            { from: 'root', to: 'pull-lines-export', id: 'line-root-pull-lines-export' },
-            { from: 'root', to: 'pull-lines-import', id: 'line-root-pull-lines-import' },
-            { from: 'root', to: 'pull-lines-import-npm', id: 'line-root-pull-lines-import-npm' },
-            { from: 'pull-lines-all', to: 'extract', id: 'line-pull-lines-all-extract' },
-            { from: 'pull-lines-consumption', to: 'extract', id: 'line-pull-lines-consumption-extract' },
-            { from: 'pull-lines-export', to: 'extract', id: 'line-pull-lines-export-extract' },
-            { from: 'pull-lines-import', to: 'extract', id: 'line-pull-lines-import-extract' },
-            { from: 'pull-lines-import-npm', to: 'extract', id: 'line-pull-lines-import-npm-extract' },
-            { from: 'extract', to: 'matches', id: 'line-extract-matches' },
-            { from: 'extract', to: 'base-regex', id: 'line-extract-base-regex' },
-            { from: 'matches', to: 'collector', id: 'line-matches-collector' }
+            { from: 'root', to: 'base-files', id: 'line-root-base-files' },
+            { from: 'root', to: 'base-regex-n-parts', id: 'line-root-base-regex-n-parts' }
          ];
 
          links.forEach(link => {
@@ -788,63 +653,8 @@
          lines.forEach(l => l.classList.remove('highlighted'));
 
          const highlights = {
-            'pull-lines-all': ['line-root-pull-lines-all'],
-            'pull-lines-consumption': ['line-root-pull-lines-consumption'],
-            'pull-lines-export': ['line-root-pull-lines-export'],
-            'pull-lines-import': ['line-root-pull-lines-import'],
-            'pull-lines-import-npm': ['line-root-pull-lines-import-npm'],
-            'extract': [
-               'line-root-pull-lines-all',
-               'line-root-pull-lines-consumption',
-               'line-root-pull-lines-export',
-               'line-root-pull-lines-import',
-               'line-root-pull-lines-import-npm',
-               'line-pull-lines-all-extract',
-               'line-pull-lines-consumption-extract',
-               'line-pull-lines-export-extract',
-               'line-pull-lines-import-extract',
-               'line-pull-lines-import-npm-extract'
-            ],
-            'matches': [
-               'line-root-pull-lines-all',
-               'line-root-pull-lines-consumption',
-               'line-root-pull-lines-export',
-               'line-root-pull-lines-import',
-               'line-root-pull-lines-import-npm',
-               'line-pull-lines-all-extract',
-               'line-pull-lines-consumption-extract',
-               'line-pull-lines-export-extract',
-               'line-pull-lines-import-extract',
-               'line-pull-lines-import-npm-extract',
-               'line-extract-matches'
-            ],
-            'base-regex': [
-               'line-root-pull-lines-all',
-               'line-root-pull-lines-consumption',
-               'line-root-pull-lines-export',
-               'line-root-pull-lines-import',
-               'line-root-pull-lines-import-npm',
-               'line-pull-lines-all-extract',
-               'line-pull-lines-consumption-extract',
-               'line-pull-lines-export-extract',
-               'line-pull-lines-import-extract',
-               'line-pull-lines-import-npm-extract',
-               'line-extract-base-regex'
-            ],
-            'collector': [
-               'line-root-pull-lines-all',
-               'line-root-pull-lines-consumption',
-               'line-root-pull-lines-export',
-               'line-root-pull-lines-import',
-               'line-root-pull-lines-import-npm',
-               'line-pull-lines-all-extract',
-               'line-pull-lines-consumption-extract',
-               'line-pull-lines-export-extract',
-               'line-pull-lines-import-extract',
-               'line-pull-lines-import-npm-extract',
-               'line-extract-matches',
-               'line-matches-collector'
-            ]
+            'base-files': ['line-root-base-files'],
+            'base-regex-n-parts': ['line-root-base-regex-n-parts']
          };
 
          const list = highlights[activeKey] || [];
