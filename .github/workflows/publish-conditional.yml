@@ -43,6 +43,6 @@ jobs:
     uses: ./.github/workflows/notify.yml
     with:
       package_name: ${{ needs.check-version.outputs.package_name }}
-      repositories: "keshavsoft/pattern-collector-anyjs keshavsoft/pattern-collector-anyjs-build-story keshavsoft/vs-code-ext-from-any-js"
+      repositories: "keshavsoft/pattern-collector-anyjs keshavsoft/pattern-collector-anyjs-build-story keshavsoft/express-fix-any-js keshavsoft/vs-code-ext-from-any-js"
     secrets:
       REPO_DISPATCH_TOKEN: ${{ secrets.REPO_DISPATCH_TOKEN }}
