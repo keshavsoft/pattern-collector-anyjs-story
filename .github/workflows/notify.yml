@@ -33,9 +33,9 @@ jobs:
               -d '{"event_type":"dependency-updated","client_payload":{"package":"${{ inputs.package_name }}"}}')
             
             if [ "$RESPONSE" = "204" ]; then
-              echo "* **[$REPO](https://github.com/$REPO)**: ✅ Dispatched successfully (HTTP 204)" >> $GITHUB_STEP_SUMMARY
+              echo "* **[$REPO](https://github.com/$REPO/actions)**: ✅ Dispatched successfully (HTTP 204)" >> $GITHUB_STEP_SUMMARY
             else
-              echo "* **[$REPO](https://github.com/$REPO)**: ❌ Failed to dispatch (HTTP $RESPONSE)" >> $GITHUB_STEP_SUMMARY
+              echo "* **[$REPO](https://github.com/$REPO/actions)**: ❌ Failed to dispatch (HTTP $RESPONSE)" >> $GITHUB_STEP_SUMMARY
               cat resp.json >> $GITHUB_STEP_SUMMARY
             fi
           done
