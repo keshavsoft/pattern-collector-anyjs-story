@@ -1,8 +1,6 @@
 name: Update Dependency
 
 on:
-  repository_dispatch:
-    types: [dependency-updated]
   workflow_dispatch:
 
 concurrency:
@@ -66,10 +64,11 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Create Summary
+        if: always()
         run: |
           echo "### 🔄 Dependency Update Summary" >> $GITHUB_STEP_SUMMARY
           echo "* **Repository**: <a href='https://github.com/${{ github.repository }}' target='_blank'>${{ github.repository }}</a>" >> $GITHUB_STEP_SUMMARY
-          echo "* **Status**: ✅ Dependency update checked/run successfully" >> $GITHUB_STEP_SUMMARY
+          echo "* **Status**: ${{ job.status }} ✅" >> $GITHUB_STEP_SUMMARY
           echo "* **Changes Pushed**: \`${{ steps.git-push.outputs.has_changes }}\`" >> $GITHUB_STEP_SUMMARY
 
   notify-dependents:
