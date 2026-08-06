@@ -1,6 +1,6 @@
 {
   "name": "pattern-collector-anyjs-story",
-  "version": "1.23.2",
+  "version": "1.24.1",
   "description": "A powerful, configurable tool to scan JavaScript/ESM files and pull structured line matches using custom regular expressions.",
   "keywords": [
     "pattern",
