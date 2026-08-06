@@ -29,6 +29,12 @@ jobs:
           node-version: '20'
           registry-url: 'https://registry.npmjs.org'
 
+      - name: Save Before Version
+        id: before
+        run: |
+          BEFORE_VERSION=$(node -p "require('./package.json').version")
+          echo "version=${BEFORE_VERSION}" >> $GITHUB_OUTPUT
+
       - name: Install dependencies
         run: npm install
 
@@ -72,6 +78,19 @@ jobs:
           echo "* **Repository**: <a href='https://github.com/${{ github.repository }}' target='_blank'>${{ github.repository }}</a>" >> $GITHUB_STEP_SUMMARY
           echo "* **Status**: ${{ job.status }} ✅" >> $GITHUB_STEP_SUMMARY
           echo "* **Changes Pushed**: \`${{ steps.git-push.outputs.has_changes }}\`" >> $GITHUB_STEP_SUMMARY
+          
+          if [ "${{ steps.git-push.outputs.has_changes }}" = "true" ]; then
+            PACKAGE_NAME=$(node -p "require('./package.json').name")
+            AFTER_VERSION=$(node -p "require('./package.json').version")
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "### 🚀 NPM Publication Summary" >> $GITHUB_STEP_SUMMARY
+            echo "* **Package**: \`${PACKAGE_NAME}\`" >> $GITHUB_STEP_SUMMARY
+            echo "* **Git Repository**: [${{ github.repository }}](https://github.com/${{ github.repository }})" >> $GITHUB_STEP_SUMMARY
+            echo "* **Before Publish Version**: \`${{ steps.before.outputs.version }}\`" >> $GITHUB_STEP_SUMMARY
+            echo "* **After Publish Version**: \`${AFTER_VERSION}\`" >> $GITHUB_STEP_SUMMARY
+            echo "* **Status**: ✅ Successfully Published to NPM" >> $GITHUB_STEP_SUMMARY
+            echo "* **Registry Link**: [npm Link](https://www.npmjs.com/package/${PACKAGE_NAME})" >> $GITHUB_STEP_SUMMARY
+          fi
 
   notify-dependents:
     needs: update-dependency
