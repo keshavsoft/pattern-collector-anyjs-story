@@ -74,32 +74,10 @@ jobs:
 
   notify-dependents:
     needs: update-dependency
-    if: needs.update-dependency.outputs.has_changes == 'true'
-    runs-on: ubuntu-latest
-    steps:
-      - name: Notify dependents
-        run: |
-          echo "### 🔔 Dependency Notification Status" >> $GITHUB_STEP_SUMMARY
-          RESPONSE1=$(curl -s -w "%{http_code}" -o resp1.json -X POST \
-            -H "Accept: application/vnd.github+json" \
-            -H "Authorization: Bearer ${{ secrets.REPO_DISPATCH_TOKEN }}" \
-            https://api.github.com/repos/keshavsoft/pattern-collector-anyjs/dispatches \
-            -d '{"event_type":"dependency-updated"}')
-          if [ "$RESPONSE1" = "204" ]; then
-            echo "* **<a href='https://github.com/keshavsoft/pattern-collector-anyjs' target='_blank'>pattern-collector-anyjs</a>**: ✅ Dispatched successfully (HTTP 204)" >> $GITHUB_STEP_SUMMARY
-          else
-            echo "* **<a href='https://github.com/keshavsoft/pattern-collector-anyjs' target='_blank'>pattern-collector-anyjs</a>**: ❌ Failed to dispatch (HTTP $RESPONSE1)" >> $GITHUB_STEP_SUMMARY
-            cat resp1.json >> $GITHUB_STEP_SUMMARY
-          fi
-          
-          RESPONSE2=$(curl -s -w "%{http_code}" -o resp2.json -X POST \
-            -H "Accept: application/vnd.github+json" \
-            -H "Authorization: Bearer ${{ secrets.REPO_DISPATCH_TOKEN }}" \
-            https://api.github.com/repos/keshavsoft/pattern-collector-anyjs-build-story/dispatches \
-            -d '{"event_type":"dependency-updated"}')
-          if [ "$RESPONSE2" = "204" ]; then
-            echo "* **<a href='https://github.com/keshavsoft/pattern-collector-anyjs-build-story' target='_blank'>pattern-collector-anyjs-build-story</a>**: ✅ Dispatched successfully (HTTP 204)" >> $GITHUB_STEP_SUMMARY
-          else
-            echo "* **<a href='https://github.com/keshavsoft/pattern-collector-anyjs-build-story' target='_blank'>pattern-collector-anyjs-build-story</a>**: ❌ Failed to dispatch (HTTP $RESPONSE2)" >> $GITHUB_STEP_SUMMARY
-            cat resp2.json >> $GITHUB_STEP_SUMMARY
-          fi
+    if: always() && needs.update-dependency.outputs.has_changes == 'true' && needs.update-dependency.result == 'success'
+    uses: ./.github/workflows/notify.yml
+    with:
+      package_name: "pattern-collector-anyjs-story"
+      repositories: "keshavsoft/pattern-collector-anyjs keshavsoft/pattern-collector-anyjs-build-story keshavsoft/vs-code-ext-from-any-js"
+    secrets:
+      REPO_DISPATCH_TOKEN: ${{ secrets.REPO_DISPATCH_TOKEN }}
