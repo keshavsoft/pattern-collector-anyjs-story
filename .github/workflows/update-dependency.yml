@@ -1,6 +1,8 @@
 name: Update Dependency
 
 on:
+  repository_dispatch:
+    types: [dependency-updated]
   workflow_dispatch:
 
 concurrency:
