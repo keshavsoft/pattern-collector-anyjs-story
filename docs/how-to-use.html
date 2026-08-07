@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>How to Use</title>
+<link rel="stylesheet" href="style1.css">
+</head>
+<body>
+<nav>
+<a href="index.html">Basics</a> |
+<a href="why-this-repo.html">Why this Repo?</a> |
+<a href="how-to-use.html">How to Use</a>
+</nav>
+
+<h1>📘 How to Use This Repository</h1>
+
+<h2>Example 1 - Endpoint Generator</h2>
+
+<pre><code>node ./test/v15/forEndPoints.js</code></pre>
+
+<p>The generator reads <strong>end-points.js</strong>, collects import statements,
+router.get(), router.post(), router.put(), and router.delete() methods, calculates
+the insertion position, and updates the file automatically.</p>
+
+<h3>Before</h3>
+<pre><code>import funcFromfind from "./find/controller.js";
+
+router.get("/find/:ledgerName", ...);</code></pre>
+
+<h3>After</h3>
+<pre><code>import funcFromfind from "./find/controller.js";
+import funcFromshowAll from "./showAll/controller.js";
+
+router.get("/find/:ledgerName", ...);
+router.get("/funcFromshowAll", ...);</code></pre>
+
+<h2>Example 2 - Routes Generator</h2>
+
+<pre><code>node ./test/v15/forRoutesEnd.js</code></pre>
+
+<p>The generator reads <strong>routes.js</strong>, finds router imports and
+router.use() statements, determines the correct insertion location, and updates
+the routing file automatically.</p>
+
+<h3>Before</h3>
+<pre><code>import { router as routerFromFold1 } from "./Fold1/end-points.js";
+
+router.use("/table1", routerFromFold1);</code></pre>
+
+<h3>After</h3>
+<pre><code>import { router as routerFromFold2 } from "./Fold2/end-points.js";
+
+router.use("/routerFromFold2", Fold2);</code></pre>
+
+<h2>Internal Flow</h2>
+<pre><code>
+Read Source
+   ↓
+Pattern Collector
+   ↓
+Regex Matching
+   ↓
+Story Builder
+   ↓
+Return Indexes
+   ↓
+Generator Updates File
+</code></pre>
+ <footer>
+         <p>MIT Licensed | Developed with ❤️ by <a href="https://github.com/keshavsoft" target="_blank">KeshavSoft</a>
+         </p>
+      </footer>
+</body>
+</html>
