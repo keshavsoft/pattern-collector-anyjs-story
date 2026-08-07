@@ -23,8 +23,6 @@
             <span>pattern-collector-anyjs-story</span> 🔍
          </a>
          <div class="nav-links">
-            <a href="how-to-use.html">How-to-use</a>
-            <a href="why-this-repo.html">why-this-repo</a>
             <a href="dependencies.html">Dependency Explorer</a>
             <a href="https://www.npmjs.com/package/pattern-collector-anyjs-story" target="_blank">NPM Package</a>
             <a href="https://github.com/keshavsoft/pattern-collector-anyjs-story" target="_blank">GitHub</a>
@@ -114,6 +112,303 @@ const results = collectPatternStory({
             </ul>
          </div>
       </div>
+
+
+      <section class="card full-card">
+
+         <h2>🎯 Why this Repository?</h2>
+
+         <p>
+            Developing Express.js applications usually requires editing routing files manually
+            whenever a new API, table, or version is added.
+         </p>
+
+         <p>
+            Every time a new endpoint is created, developers must locate the correct
+            <strong>import</strong>,
+            <strong>router.use()</strong>,
+            <strong>router.get()</strong>,
+            <strong>router.post()</strong>
+            position and insert new code without breaking existing formatting.
+         </p>
+
+         <p>
+            <strong>pattern-collector-anyjs-story</strong> solves this problem by reading existing
+            JavaScript files, identifying routing patterns, calculating insertion positions,
+            and returning structured information that other generators use to update files
+            automatically.
+         </p>
+
+      </section>
+
+      <!-- ===================================================== -->
+      <!-- Where Used -->
+      <!-- ===================================================== -->
+
+      <section class="card full-card">
+
+         <h2>🚀 Where is this Repository Used?</h2>
+
+         <p>
+
+            This package is the pattern analysis engine behind several routing generators.
+
+         </p>
+
+         <div class="feature-grid">
+
+            <div class="feature-box">
+
+               📁 App.js Generator
+
+            </div>
+
+            <div class="feature-box">
+
+               📂 Version Route Generator
+
+            </div>
+
+            <div class="feature-box">
+
+               📄 Table Route Generator
+
+            </div>
+
+            <div class="feature-box">
+
+               ⚡ Endpoint Generator
+
+            </div>
+
+         </div>
+
+         <pre><code>
+
+Generator
+      │
+      ▼
+Read Existing File
+      │
+      ▼
+Collect Matching Patterns
+      │
+      ▼
+Find Correct Line Numbers
+      │
+      ▼
+Insert New Code
+      │
+      ▼
+Save Updated File
+
+</code></pre>
+
+      </section>
+
+      <!-- ===================================================== -->
+      <!-- Example 1 -->
+      <!-- ===================================================== -->
+
+      <section class="card full-card">
+
+         <h2>📌 Example 1 — Endpoint Generator</h2>
+
+         <p>
+
+            Run
+
+         </p>
+
+         <pre><code>node ./test/v15/forEndPoints.js</code></pre>
+
+         <p>
+
+            This script scans the existing
+            <strong>end-points.js</strong>
+            file.
+
+         </p>
+
+         <p>
+
+            It detects
+
+         </p>
+
+         <ul>
+
+            <li>Existing import statements</li>
+
+            <li>Existing router.get()</li>
+
+            <li>Existing router.post()</li>
+
+            <li>Existing router.put()</li>
+
+            <li>Existing router.delete()</li>
+
+            <li>First matching line</li>
+
+            <li>Last matching line</li>
+
+         </ul>
+
+         <p>
+
+            After calculating insertion positions it automatically creates the missing code.
+
+         </p>
+
+         <h3>Before</h3>
+
+         <pre><code>
+
+import funcFromfind from "./find/controller.js";
+
+router.get("/find/:ledgerName", ...);
+
+</code></pre>
+
+         <h3>After</h3>
+
+         <pre><code>
+
+import funcFromfind from "./find/controller.js";
+import funcFromshowAll from "./showAll/controller.js";
+
+router.get("/find/:ledgerName", ...);
+router.get("/funcFromshowAll", ...);
+
+</code></pre>
+
+         <div class="info-box">
+
+            💡 Only the required lines are inserted.
+            Nothing else in the file is modified.
+
+         </div>
+
+      </section>
+
+      <!-- ===================================================== -->
+      <!-- Example 2 -->
+      <!-- ===================================================== -->
+
+      <section class="card full-card">
+
+         <h2>📌 Example 2 — Routes Generator</h2>
+
+         <p>
+
+            Run
+
+         </p>
+
+         <pre><code>node ./test/v15/forRoutesEnd.js</code></pre>
+
+         <p>
+
+            The script reads
+            <strong>routes.js</strong>
+
+            and identifies
+
+         </p>
+
+         <ul>
+
+            <li>router imports</li>
+
+            <li>router.use()</li>
+
+            <li>first matching line</li>
+
+            <li>last matching line</li>
+
+            <li>available insertion position</li>
+
+         </ul>
+
+         <h3>Before</h3>
+
+         <pre><code>
+
+import { router as routerFromFold1 }
+from "./Fold1/end-points.js";
+
+router.use("/table1", routerFromFold1);
+
+</code></pre>
+
+         <h3>After</h3>
+
+         <pre><code>
+
+import { router as routerFromFold1 }
+from "./Fold1/end-points.js";
+
+import { router as routerFromFold2 }
+from "./Fold2/end-points.js";
+
+router.use("/table1", routerFromFold1);
+
+router.use("/routerFromFold2", Fold2);
+
+</code></pre>
+
+         <div class="info-box">
+
+            The package automatically calculates the correct insertion
+            location instead of appending code randomly.
+
+         </div>
+
+      </section>
+
+      <!-- ===================================================== -->
+      <!-- Internal Workflow -->
+      <!-- ===================================================== -->
+
+      <section class="card full-card">
+
+         <h2>⚙️ Internal Workflow</h2>
+
+         <pre><code>
+
+Read File
+     │
+     ▼
+Collect Patterns
+     │
+     ▼
+Build Story
+     │
+     ▼
+Calculate First & Last Indexes
+     │
+     ▼
+Return Structured Result
+     │
+     ▼
+Generator Inserts New Code
+
+</code></pre>
+
+         <p>
+
+            This repository never edits files directly.
+
+            Instead it returns structured information that tells generator
+            repositories exactly where new code should be inserted.
+
+         </p>
+
+      </section>
+
+      <!-- ===================================================== -->
+      <!-- Benefits -->
+      <!-- ===================================================== -->
 
       <section class="card full-card">
 
