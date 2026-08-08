@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Route Documentation</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <nav>
+        <a href="../index.html" class="logo">
+            <span>pattern-collector-anyjs-story</span> 🔍
+        </a>
+        <div class="nav-links">
+            <!-- <a href="how-to-use.html">How</a> -->
+            <!-- <a href="why-this-repo.html">why</a> -->
+            <a href="route.html">route</a>
+            <!-- <a href="dependencies.html">Dependency Explorer</a> -->
+            <!-- <a href="https://www.npmjs.com/package/pattern-collector-anyjs-story" target="_blank">NPM Package</a> -->
+            <!-- <a href="https://github.com/keshavsoft/pattern-collector-anyjs-story" target="_blank">GitHub</a> -->
+        </div>
+        <div class="nav-links">
+            <a href="https://github.com/keshavsoft/pattern-collector-anyjs-story" target="_blank">GitHub</a>
+        </div>
+    </nav>
+
+    <section class="card">
+
+        <h2>🌐 Understanding Express Route Structure</h2>
+
+        <p>
+            Every generated endpoint follows a consistent routing convention.
+            This makes APIs easy to understand, organize, and extend.
+        </p>
+
+        <h2>Example Route</h2>
+
+        <pre><code>
+GET /api/v1/bills/showAll
+</code></pre>
+
+        <p>
+            Think of this route like a postal address. Every part has a specific
+            responsibility.
+        </p>
+
+    </section>
+
+    <!-- ===================================================== -->
+
+    <section class="card">
+
+        <h2>📌 Block 1 : <code>/api</code></h2>
+
+        <p>
+            <strong>api</strong> tells Express that this URL belongs to the
+            application's REST API.
+        </p>
+
+        <p>
+            It separates backend services from frontend pages.
+            Whenever a request starts with <strong>/api</strong>, Express knows
+            that it should return JSON data instead of rendering HTML.
+        </p>
+
+        <div class="feature-grid">
+
+            <div class="feature-box">
+                🌐 API Root
+            </div>
+
+            <div class="feature-box">
+                📦 JSON Responses
+            </div>
+
+            <div class="feature-box">
+                🔗 Common Entry Point
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ===================================================== -->
+
+    <section class="card">
+
+        <h2>📌 Block 2 : <code>/v1</code></h2>
+
+        <p>
+            <strong>v1</strong> represents the API version.
+        </p>
+
+        <p>
+            Versioning allows new features to be introduced without breaking
+            existing applications. Future releases may provide
+            <strong>v2</strong> or <strong>v3</strong> while older clients
+            continue using <strong>v1</strong>.
+        </p>
+
+        <div class="feature-grid">
+
+            <div class="feature-box">
+                🔖 API Version
+            </div>
+
+            <div class="feature-box">
+                🔄 Backward Compatible
+            </div>
+
+            <div class="feature-box">
+                🚀 Future Ready
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ===================================================== -->
+
+    <section class="card">
+
+        <h2>📌 Block 3 : <code>/tableName</code></h2>
+
+        <p>
+            This block represents the database table (or collection) that the
+            API is working with.
+        </p>
+
+        <p>
+            During endpoint generation, the generator automatically replaces
+            <strong>tableName</strong> with the actual table name.
+        </p>
+
+        <h3>Examples</h3>
+
+        <pre><code>
+/api/v1/bills
+/api/v1/items
+/api/v1/customers
+/api/v1/products
+/api/v1/orders
+</code></pre>
+
+        <p>
+            If the table is <strong>bills</strong>, all generated endpoints will
+            begin with:
+        </p>
+
+        <pre><code>
+/api/v1/bills
+</code></pre>
+
+        <p>
+            If the table is <strong>items</strong>, every endpoint becomes:
+        </p>
+
+        <pre><code>
+/api/v1/items
+</code></pre>
+
+        <div class="feature-grid">
+
+            <div class="feature-box">
+                🗂 Database Table
+            </div>
+
+            <div class="feature-box">
+                📄 Resource Name
+            </div>
+
+            <div class="feature-box">
+                ⚙ Generated Automatically
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ===================================================== -->
+
+    <section class="card">
+
+        <h2>📌 Block 4 : <code>/showAll</code></h2>
+
+        <p>
+            This is the sub-route (endpoint action).
+        </p>
+
+        <p>
+            <strong>showAll</strong> means "return every record available in the
+            selected table."
+        </p>
+
+        <p>
+            Since this endpoint only retrieves data, it uses the
+            <strong>GET</strong> HTTP method.
+        </p>
+
+        <pre><code>
+GET /api/v1/bills/showAll
+</code></pre>
+
+        <p>
+            The server reads every row from the <strong>bills</strong> table and
+            returns the result as JSON.
+        </p>
+
+        <h3>Typical Response</h3>
+
+        <pre><code>
+[
+    {
+        "BillPk": 1,
+        "CustomerName": "John"
+    },
+    {
+        "BillPk": 2,
+        "CustomerName": "David"
+    }
+]
+</code></pre>
+
+        <div class="feature-grid">
+
+            <div class="feature-box">
+                📥 Read Data
+            </div>
+
+            <div class="feature-box">
+                📋 Return All Records
+            </div>
+
+            <div class="feature-box">
+                ⚡ GET Method
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ===================================================== -->
+
+    <section class="card">
+
+        <h2>🧩 Complete Route Story</h2>
+
+        <pre><code>
+GET /api/v1/bills/showAll
+        │
+        │
+        ├── api
+        │      Backend API Root
+        │
+        ├── v1
+        │      API Version
+        │
+        ├── bills
+        │      Database Table
+        │
+        └── showAll
+               Returns every record
+</code></pre>
+
+        <p>
+            Reading the URL from left to right tells the complete story:
+        </p>
+
+        <ul>
+            <li><strong>api</strong> → This is a backend API.</li>
+            <li><strong>v1</strong> → Use Version 1 of the API.</li>
+            <li><strong>bills</strong> → Work with the <strong>bills</strong> table.</li>
+            <li><strong>showAll</strong> → Return every record from that table.</li>
+        </ul>
+
+    </section>
+
+    <!-- ===================================================== -->
+
+    <section class="card">
+
+        <h2>📚 Other Common Sub Routes</h2>
+
+        <table class="api-table">
+
+            <tr>
+                <th>Sub Route</th>
+                <th>Purpose</th>
+            </tr>
+
+            <tr>
+                <td>showAll</td>
+                <td>Returns every record from the table.</td>
+            </tr>
+
+            <tr>
+                <td>showOne/:id</td>
+                <td>Returns a single record.</td>
+            </tr>
+
+            <tr>
+                <td>insert</td>
+                <td>Creates a new record.</td>
+            </tr>
+
+            <tr>
+                <td>update/:id</td>
+                <td>Updates an existing record.</td>
+            </tr>
+
+            <tr>
+                <td>delete/:id</td>
+                <td>Deletes a record.</td>
+            </tr>
+
+        </table>
+
+    </section>
+
+</body>
+
+</html>
