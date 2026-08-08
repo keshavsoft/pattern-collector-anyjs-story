@@ -1,0 +1,463 @@
+/* ===========================
+   Google Font
+=========================== */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+/* ===========================
+   Variables
+=========================== */
+
+
+:root {
+    --bg: #030712;
+    --border: #334155;
+    --text: #f8fafc;
+    --bg-base: #030712;
+    --bg-card: #0f172a;
+    --bg-hover: #1e293b;
+    --border-color: #334155;
+    --text-primary: #f8fafc;
+    --text-secondary: #cbd5e1;
+    --text-muted: #94a3b8;
+    --accent: #38bdf8;
+    --accent-secondary: #818cf8;
+    --accent-glow: rgba(56, 189, 248, 0.12);
+    --accent-gradient: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
+    --success: #34d399;
+}
+
+/* ===========================
+   Reset
+=========================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+
+    font-family: 'Inter', sans-serif;
+
+    background: var(--bg);
+
+    color: var(--text);
+
+    line-height: 1.8;
+
+    background-image:
+        radial-gradient(circle at top left, rgba(56, 189, 248, .08), transparent 35%),
+        radial-gradient(circle at bottom right, rgba(129, 140, 248, .08), transparent 35%);
+
+}
+
+/* ===========================
+   Main Container
+=========================== */
+
+body {
+
+    max-width: 950px;
+
+    margin: auto;
+
+    padding: 30px;
+
+}
+
+/* ===========================
+   Navigation
+=========================== */
+
+/* Navbar */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+    padding: 20px 0;
+    margin-bottom: 40px;
+    backdrop-filter: blur(12px);
+}
+
+.logo {
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    letter-spacing: -0.5px;
+}
+
+.logo span {
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.nav-links {
+    display: flex;
+    gap: 24px;
+}
+
+.nav-links a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.nav-links a:hover {
+    color: var(--accent);
+}
+
+/* ===========================
+   Headings
+=========================== */
+
+h1 {
+
+    font-size: 25px;
+
+    text-align: center;
+
+    margin-bottom: 30px;
+
+    background: var(--gradient);
+
+    -webkit-background-clip: text;
+
+    -webkit-text-fill-color: transparent;
+
+    font-weight: 900;
+
+}
+
+h2 {
+
+    margin-top: 45px;
+
+    margin-bottom: 18px;
+
+    font-size: 28px;
+
+    border-left: 5px solid var(--primary);
+
+    padding-left: 15px;
+
+}
+
+/* ===========================
+   Paragraph
+=========================== */
+
+p {
+
+    color: var(--text2);
+
+    margin-bottom: 18px;
+
+    font-size: 16px;
+
+}
+
+/* ===========================
+   Cards
+=========================== */
+
+h2,
+p,
+ul,
+pre {
+
+    animation: fadeIn .6s ease;
+
+}
+
+section {
+
+    background: var(--card);
+
+    border: 1px solid var(--border);
+
+    border-radius: 18px;
+
+    padding: 30px;
+
+    margin-bottom: 35px;
+
+}
+
+/* ===========================
+   Lists
+=========================== */
+
+ul {
+
+    margin-left: 25px;
+
+    color: var(--text2);
+
+}
+
+li {
+
+    margin: 12px 0;
+
+}
+
+/* ===========================
+   Code Blocks
+=========================== */
+
+pre {
+
+    background: #020617;
+
+    border: 1px solid var(--border);
+
+    border-radius: 14px;
+
+    padding: 20px;
+
+    overflow: auto;
+
+    margin: 20px 0;
+
+}
+
+code {
+
+    color: #67e8f9;
+
+    font-size: 14px;
+
+    font-family: Consolas, monospace;
+
+}
+
+/* ===========================
+   Inline Code
+=========================== */
+
+p code {
+
+    background: #0f172a;
+
+    padding: 4px 8px;
+
+    border-radius: 5px;
+
+    color: #7dd3fc;
+
+}
+
+/* ===========================
+   Footer
+=========================== */
+
+footer {
+
+    margin-top: 70px;
+
+    text-align: center;
+
+    color: var(--text3);
+
+    padding: 25px;
+
+    border-top: 1px solid var(--border);
+
+}
+
+/* ===========================
+   Tables
+=========================== */
+
+table {
+
+    width: 100%;
+
+    border-collapse: collapse;
+
+    margin-top: 20px;
+
+}
+
+th {
+
+    background: #0f172a;
+
+    color: white;
+
+}
+
+th,
+td {
+
+    border: 1px solid var(--border);
+
+    padding: 12px;
+
+}
+
+td {
+
+    color: var(--text2);
+
+}
+
+/* ===========================
+   Buttons
+=========================== */
+
+button {
+
+    background: var(--gradient);
+
+    border: none;
+
+    color: #000;
+
+    padding: 12px 22px;
+
+    border-radius: 8px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: .3s;
+
+}
+
+button:hover {
+
+    transform: translateY(-3px);
+
+}
+
+/* ===========================
+   Images
+=========================== */
+
+img {
+
+    width: 100%;
+
+    border-radius: 15px;
+
+    margin: 25px 0;
+
+    border: 1px solid var(--border);
+
+    box-shadow: var(--shadow);
+
+}
+
+/* ===========================
+   Blockquote
+=========================== */
+
+blockquote {
+
+    border-left: 5px solid var(--primary);
+
+    padding: 15px 25px;
+
+    background: #07111d;
+
+    color: var(--text2);
+
+    margin: 25px 0;
+
+    border-radius: 8px;
+
+}
+
+/* ===========================
+   Horizontal Line
+=========================== */
+
+hr {
+
+    border: none;
+
+    border-top: 1px solid var(--border);
+
+    margin: 40px 0;
+
+}
+
+/* ===========================
+   Responsive
+=========================== */
+
+@media(max-width:768px) {
+
+    body {
+
+        padding: 15px;
+
+    }
+
+    h1 {
+
+        font-size: 34px;
+
+    }
+
+    h2 {
+
+        font-size: 24px;
+
+    }
+
+    nav {
+
+        gap: 10px;
+
+    }
+
+    nav a {
+
+        padding: 8px 12px;
+
+        font-size: 14px;
+
+    }
+
+}
+
+
+/* ===========================
+   Animation
+=========================== */
+
+@keyframes fadeIn {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(20px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+
+    }
+
+}
